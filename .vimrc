@@ -100,3 +100,4 @@ cmap jj  <C-[]]
 set wmw=0
 nnoremap H <c-w>h<c-w><Bar>
 nnoremap L <c-w>l<c-w><Bar>
+map ff :vertical wincmd f<CR>

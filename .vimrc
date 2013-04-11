@@ -92,7 +92,7 @@ inoremap { {}<LEFT>
 set pastetoggle=<F3>
 xnoremap p pgvy
 au! BufRead,BufNewFile *.hta  setfiletype html
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+" let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 " Mapping ESC in insert mode and command mode to double i
 imap jj <C-[>
 cmap jj  <C-[]]

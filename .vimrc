@@ -158,6 +158,9 @@ set showcmd                     " show (partial) command in the last line of the
 set nomodeline                  " disable mode lines (security measure)
 "set ttyfast                     " always use a fast terminal
 set cursorline                  " underline the current line, for quick orientation
+" This sets the minimum window height to 0, so you can stack many more files before things get crowded. Vim will only display the filename. 
+set wmw=0
+map ff :vertical wincmd f<CR>
 " }}}
 
 " Toggle the quickfix window {{{
@@ -240,10 +243,10 @@ nnoremap j gj
 nnoremap k gk
 
 " Easy window navigation
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+noremap H <C-w>h
+noremap J <C-w>j
+noremap K <C-w>k
+noremap L <C-w>l
 nnoremap <leader>w <C-w>v<C-w>l
 
 " Complete whole filenames/lines with a quicker shortcut key in insert mode
@@ -723,9 +726,6 @@ nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
 vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
 
-" Use shift-H and shift-L for move to beginning/end
-nnoremap H 0
-nnoremap L $
 
 " Define operator-pending mappings to quickly apply commands to function names
 " and/or parameter lists in the current line

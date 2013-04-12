@@ -301,4 +301,4 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
 " }}}
 " Edit the vimrc file
 nnoremap <silent> <leader>e :e $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader>v :so $MYVIMRC<CR>

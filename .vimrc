@@ -191,3 +191,73 @@ set laststatus=2                " tell VIM to always put a status line in, even
 set cmdheight=2                 " use a status bar that is 2 rows high
 " }}}
 
+" Vim behaviour {{{
+set hidden                      " hide buffers instead of closing them this
+                                "    means that the current buffer can be put
+                                "    to background without being written; and
+                                "    that marks and undo history are preserved
+set switchbuf=useopen           " reveal already opened files from the
+                                " quickfix window instead of opening new
+                                " buffers
+set history=1000                " remember more commands and search history
+set undolevels=1000             " use many muchos levels of undo
+if v:version >= 730
+    set undofile                " keep a persistent backup file
+    set undodir=~/.vim/.undo,~/tmp,/tmp
+endif
+set nobackup                    " do not keep backup files, it's 70's style cluttering
+set noswapfile                  " do not write annoying intermediate swap files,
+                                "    who did ever restore from swap files anyway?
+set directory=~/.vim/.tmp,~/tmp,/tmp
+                                " store swap files in one of these directories
+                                "    (in case swapfile is ever turned on)
+set viminfo='20,\"80            " read/write a .viminfo file, don't store more
+                                "    than 80 lines of registers
+set wildmenu                    " make tab completion for files/buffers act like bash
+set wildmode=list:full          " show a list when pressing tab and complete
+                                "    first full match
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                       " change the terminal's title
+set visualbell                  " don't beep
+set noerrorbells                " don't beep
+set showcmd                     " show (partial) command in the last line of the screen
+                                "    this also shows visual selection info
+set nomodeline                  " disable mode lines (security measure)
+"set ttyfast                     " always use a fast terminal
+set cursorline                  " underline the current line, for quick orientation
+" This sets the minimum window height to 0, so you can stack many more files before things get crowded. Vim will only display the filename. 
+set wmw=0
+map ff :vertical wincmd f<CR>
+" }}}
+" Toggle the quickfix window {{{
+" From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
+nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
+
+let g:quickfix_is_open = 0
+
+function! s:QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+" }}}
+" Toggle the foldcolumn {{{
+nnoremap <leader>f :call FoldColumnToggle()<cr>
+
+let g:last_fold_column_width = 4  " Pick a sane default for the foldcolumn
+
+function! FoldColumnToggle()
+    if &foldcolumn
+        let g:last_fold_column_width = &foldcolumn
+        setlocal foldcolumn=0
+    else
+        let &l:foldcolumn = g:last_fold_column_width
+    endif
+endfunction
+" }}}

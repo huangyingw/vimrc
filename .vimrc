@@ -487,6 +487,44 @@ if has("autocmd")
     augroup end "}}}
 endif
 " }}}
+" Skeleton processing {{{
+
+if has("autocmd")
+
+    "if !exists('*LoadTemplate')
+    "function LoadTemplate(file)
+        "" Add skeleton fillings for Python (normal and unittest) files
+        "if a:file =~ 'test_.*\.py$'
+            "execute "0r ~/.vim/skeleton/test_template.py"
+        "elseif a:file =~ '.*\.py$'
+            "execute "0r ~/.vim/skeleton/template.py"
+        "endif
+    "endfunction
+    "endif
+
+    "autocmd BufNewFile * call LoadTemplate(@%)
+
+endif " has("autocmd")
+
+" }}}
+" Restore cursor position upon reopening files {{{
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+" }}}
+" Common abbreviations / misspellings {{{
+source ~/.vim/autocorrect.vim
+" }}}
+" Extra vi-compatibility {{{
+" set extra vi-compatible options
+set cpoptions+=$     " when changing a line, don't redisplay, but put a '$' at
+                     " the end during the change
+set formatoptions-=o " don't start new lines w/ comment leader on pressing 'o'
+au filetype vim set formatoptions-=o
+                     " somehow, during vim filetype detection, this gets set
+                     " for vim files, so explicitly unset it again
+" }}}
 " Edit the vimrc file
 nnoremap <silent> <leader>e :e $MYVIMRC<CR>
 nnoremap <silent> <leader>v :so $MYVIMRC<CR>

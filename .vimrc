@@ -1,4 +1,11 @@
 " safe {{{
+" Easy window navigation {{{
+noremap H <C-w>h
+noremap J <C-w>j
+noremap K <C-w>k
+noremap L <C-w>l
+nnoremap <leader>w <C-w>v<C-w>l
+" }}}
 " Vim behaviour {{{
 set hidden                      " hide buffers instead of closing them this
                                 "    means that the current buffer can be put
@@ -746,11 +753,4 @@ nnoremap <Tab> %
 vnoremap <Tab> %
 
 
-" }}}
-" Easy window navigation {{{
-noremap H <C-w>h
-noremap J <C-w>j
-noremap K <C-w>k
-noremap L <C-w>l
-nnoremap <leader>w <C-w>v<C-w>l
 " }}}

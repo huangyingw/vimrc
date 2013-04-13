@@ -156,7 +156,6 @@ vnoremap / /\v
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
 " }}}
-
 " Folding rules {{{
 set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
@@ -181,7 +180,6 @@ function! MyFoldText()
 endfunction
 set foldtext=MyFoldText()
 " }}}
-
 " Editor layout {{{
 set termencoding=utf-8
 set encoding=utf-8
@@ -190,7 +188,6 @@ set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
 set cmdheight=2                 " use a status bar that is 2 rows high
 " }}}
-
 " Vim behaviour {{{
 set hidden                      " hide buffers instead of closing them this
                                 "    means that the current buffer can be put
@@ -266,7 +263,6 @@ if &t_Co > 2 || has("gui_running")
    syntax on                    " switch syntax highlighting on, when the terminal has colors
 endif
 " }}}
-
 " NERDTree settings {{{
 " Put focus to the NERD Tree with F3 (tricked by quickly closing it and
 " immediately showing it again, since there is no :NERDTreeFocus command)

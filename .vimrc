@@ -290,6 +290,8 @@ inoremap jj <Esc>
 " Quick alignment of text
 nnoremap <leader>al :left<CR>
 nnoremap <leader>ar :right<CR>
+" }}}
+" Shortcut mappings3 {{{
 nnoremap <leader>ac :center<CR>
 
 " Sudo to write

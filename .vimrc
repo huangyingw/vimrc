@@ -1,4 +1,4 @@
-"
+" comment {{{
 " Personal preference .vimrc file
 " Maintained by Vincent Driessen <vincent@datafox.nl>
 "
@@ -19,7 +19,8 @@
 "
 
 " Use vim settings, rather then vi settings (much better!)
-" This must be first, because it changes other options as a side effect.
+" }}}
+" This must be first, because it changes other options as a side effect. {{{
 set nocompatible
 
 " Use pathogen to easily modify the runtime path to include all plugins under
@@ -33,7 +34,7 @@ syntax on
 " Change the mapleader from \ to ,
 let mapleader=","
 let maplocalleader="\\"
-
+" }}}
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in
 set nowrap                      " don't wrap lines

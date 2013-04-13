@@ -204,6 +204,8 @@ noremap K <C-w>k
 noremap L <C-w>l
 nnoremap <leader>w <C-w>v<C-w>l
 " }}}
+" Shortcut mappings safe {{{
+" }}}
 " Shortcut mappings1 {{{
 " Since I never use the ; key anyway, this is a real optimization for almost
 " all Vim commands, as I don't have to press the Shift key to form chords to

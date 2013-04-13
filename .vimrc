@@ -735,3 +735,7 @@ nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
 inoremap <leader>w <esc>:write<cr>:!./run_tests.sh %<cr>
 nnoremap <leader>w :!./run_tests.sh<cr>
 " }}}
+" Edit the vimrc file {{{
+nnoremap <silent> <leader>e :e $MYVIMRC<CR>
+nnoremap <silent> <leader>v :so $MYVIMRC<CR>
+" }}}

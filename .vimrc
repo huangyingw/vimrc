@@ -305,6 +305,8 @@ vnoremap <Tab> %
 nnoremap <Space> za
 vnoremap <Space> za
 
+" }}}
+" Shortcut mappings4 {{{
 " Strip all trailing whitespace from a file, using ,w
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 

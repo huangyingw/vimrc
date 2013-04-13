@@ -310,6 +310,7 @@ nnoremap <leader>v V`]
 " Gundo.vim
 nnoremap <F5> :GundoToggle<CR>
 " }}}
+" }}}
 " Shortcut mappings3 {{{
 nnoremap <leader>ac :center<CR>
 
@@ -324,7 +325,6 @@ vnoremap <Tab> %
 nnoremap <Space> za
 vnoremap <Space> za
 
-" }}}
 " }}}
 " NERDTree settings {{{
 " Put focus to the NERD Tree with F3 (tricked by quickly closing it and

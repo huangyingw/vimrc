@@ -1,4 +1,41 @@
 " safe {{{
+" Toggle the quickfix window {{{
+" From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
+nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
+
+let g:quickfix_is_open = 0
+
+function! s:QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+" }}}
+" Toggle the foldcolumn {{{
+nnoremap <leader>f :call FoldColumnToggle()<cr>
+
+let g:last_fold_column_width = 4  " Pick a sane default for the foldcolumn
+
+function! FoldColumnToggle()
+    if &foldcolumn
+        let g:last_fold_column_width = &foldcolumn
+        setlocal foldcolumn=0
+    else
+        let &l:foldcolumn = g:last_fold_column_width
+    endif
+endfunction
+" }}}
+" Highlighting {{{
+if &t_Co > 2 || has("gui_running")
+   syntax on                    " switch syntax highlighting on, when the terminal has colors
+endif
+" }}}
 " comment {{{
 " Personal preference .vimrc file
 " Maintained by Vincent Driessen <vincent@datafox.nl>
@@ -709,43 +746,6 @@ set cursorline                  " underline the current line, for quick orientat
 " This sets the minimum window height to 0, so you can stack many more files before things get crowded. Vim will only display the filename. 
 set wmw=0
 map ff :vertical wincmd f<CR>
-" }}}
-" Toggle the quickfix window {{{
-" From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
-nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
-
-let g:quickfix_is_open = 0
-
-function! s:QuickfixToggle()
-    if g:quickfix_is_open
-        cclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        copen
-        let g:quickfix_is_open = 1
-    endif
-endfunction
-" }}}
-" Toggle the foldcolumn {{{
-nnoremap <leader>f :call FoldColumnToggle()<cr>
-
-let g:last_fold_column_width = 4  " Pick a sane default for the foldcolumn
-
-function! FoldColumnToggle()
-    if &foldcolumn
-        let g:last_fold_column_width = &foldcolumn
-        setlocal foldcolumn=0
-    else
-        let &l:foldcolumn = g:last_fold_column_width
-    endif
-endfunction
-" }}}
-" Highlighting {{{
-if &t_Co > 2 || has("gui_running")
-   syntax on                    " switch syntax highlighting on, when the terminal has colors
-endif
 " }}}
 " Easy window navigation {{{
 noremap H <C-w>h

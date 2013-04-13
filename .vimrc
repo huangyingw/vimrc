@@ -205,7 +205,6 @@ noremap L <C-w>l
 nnoremap <leader>w <C-w>v<C-w>l
 " }}}
 " Shortcut mappings safe {{{
-" }}}
 " Shortcut mappings1 {{{
 " Since I never use the ; key anyway, this is a real optimization for almost
 " all Vim commands, as I don't have to press the Shift key to form chords to
@@ -294,21 +293,6 @@ inoremap jj <Esc>
 nnoremap <leader>al :left<CR>
 nnoremap <leader>ar :right<CR>
 " }}}
-" Shortcut mappings3 {{{
-nnoremap <leader>ac :center<CR>
-
-" Sudo to write
-cnoremap w!! w !sudo tee % >/dev/null
-
-" Jump to matching pairs easily, with Tab
-nnoremap <Tab> %
-vnoremap <Tab> %
-
-" Folding
-nnoremap <Space> za
-vnoremap <Space> za
-
-" }}}
 " Shortcut mappings4 {{{
 " Strip all trailing whitespace from a file, using ,w
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
@@ -325,6 +309,22 @@ nnoremap <leader>v V`]
 
 " Gundo.vim
 nnoremap <F5> :GundoToggle<CR>
+" }}}
+" Shortcut mappings3 {{{
+nnoremap <leader>ac :center<CR>
+
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
+
+" Jump to matching pairs easily, with Tab
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+" Folding
+nnoremap <Space> za
+vnoremap <Space> za
+
+" }}}
 " }}}
 " NERDTree settings {{{
 " Put focus to the NERD Tree with F3 (tricked by quickly closing it and

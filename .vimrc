@@ -197,6 +197,13 @@ if &t_Co > 2 || has("gui_running")
    syntax on                    " switch syntax highlighting on, when the terminal has colors
 endif
 " }}}
+" Easy window navigation {{{
+noremap H <C-w>h
+noremap J <C-w>j
+noremap K <C-w>k
+noremap L <C-w>l
+nnoremap <leader>w <C-w>v<C-w>l
+" }}}
 " Shortcut mappings1 {{{
 " Since I never use the ; key anyway, this is a real optimization for almost
 " all Vim commands, as I don't have to press the Shift key to form chords to
@@ -236,12 +243,6 @@ nnoremap ` '
 nnoremap j gj
 nnoremap k gk
 
-" Easy window navigation
-noremap H <C-w>h
-noremap J <C-w>j
-noremap K <C-w>k
-noremap L <C-w>l
-nnoremap <leader>w <C-w>v<C-w>l
 
 " Complete whole filenames/lines with a quicker shortcut key in insert mode
 inoremap <C-f> <C-x><C-f>

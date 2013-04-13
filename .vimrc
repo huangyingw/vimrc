@@ -391,6 +391,8 @@ nnoremap <silent> <leader>e :e $MYVIMRC<CR>
 nnoremap <silent> <leader>v :so $MYVIMRC<CR>
 " }}}
 " }}}
+" test {{{
+" }}}
 " comment {{{
 " Personal preference .vimrc file
 " Maintained by Vincent Driessen <vincent@datafox.nl>

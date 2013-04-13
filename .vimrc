@@ -197,7 +197,7 @@ if &t_Co > 2 || has("gui_running")
    syntax on                    " switch syntax highlighting on, when the terminal has colors
 endif
 " }}}
-" Shortcut mappings {{{
+" Shortcut mappings1 {{{
 " Since I never use the ; key anyway, this is a real optimization for almost
 " all Vim commands, as I don't have to press the Shift key to form chords to
 " enter ex mode.
@@ -260,6 +260,8 @@ nnoremap <leader>y "+y
 nnoremap <leader>Y "+yy
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
+" }}}
+" Shortcut mappings2 {{{
 
 " YankRing stuff
 let g:yankring_history_dir = '$HOME/.vim/.tmp'

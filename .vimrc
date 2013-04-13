@@ -1,3 +1,4 @@
+" safe {{{
 " comment {{{
 " Personal preference .vimrc file
 " Maintained by Vincent Driessen <vincent@datafox.nl>
@@ -359,7 +360,7 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
             \ '\.o$', '\.so$', '\.egg$', '^\.git$' ]
 
 " }}}
-" safe {{{
+" }}}
 " TagList settings {{{
 nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
 nnoremap <leader>L :TlistClose<CR>
@@ -750,5 +751,4 @@ nnoremap <leader>w :!./run_tests.sh<cr>
 " Edit the vimrc file {{{
 nnoremap <silent> <leader>e :e $MYVIMRC<CR>
 nnoremap <silent> <leader>v :so $MYVIMRC<CR>
-" }}}
 " }}}

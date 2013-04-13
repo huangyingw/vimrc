@@ -310,6 +310,9 @@ nnoremap <leader>v V`]
 " Gundo.vim
 nnoremap <F5> :GundoToggle<CR>
 " }}}
+" Folding
+nnoremap <Space> za
+vnoremap <Space> za
 " }}}
 " Shortcut mappings3 {{{
 nnoremap <leader>ac :center<CR>
@@ -321,9 +324,6 @@ cnoremap w!! w !sudo tee % >/dev/null
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-" Folding
-nnoremap <Space> za
-vnoremap <Space> za
 
 " }}}
 " NERDTree settings {{{

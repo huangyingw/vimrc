@@ -89,7 +89,6 @@ vnoremap / /\v
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
 " }}}
-
 " Folding rules {{{
 set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
@@ -114,7 +113,6 @@ function! MyFoldText()
 endfunction
 set foldtext=MyFoldText()
 " }}}
-
 " Editor layout {{{
 set termencoding=utf-8
 set encoding=utf-8
@@ -123,7 +121,6 @@ set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
 set cmdheight=2                 " use a status bar that is 2 rows high
 " }}}
-
 " Vim behaviour {{{
 set hidden                      " hide buffers instead of closing them this
                                 "    means that the current buffer can be put
@@ -162,7 +159,6 @@ set cursorline                  " underline the current line, for quick orientat
 set wmw=0
 map ff :vertical wincmd f<CR>
 " }}}
-
 " Toggle the quickfix window {{{
 " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
 nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
@@ -181,7 +177,6 @@ function! s:QuickfixToggle()
     endif
 endfunction
 " }}}
-
 " Toggle the foldcolumn {{{
 nnoremap <leader>f :call FoldColumnToggle()<cr>
 
@@ -196,13 +191,11 @@ function! FoldColumnToggle()
     endif
 endfunction
 " }}}
-
 " Highlighting {{{
 if &t_Co > 2 || has("gui_running")
    syntax on                    " switch syntax highlighting on, when the terminal has colors
 endif
 " }}}
-
 " Shortcut mappings {{{
 " Since I never use the ; key anyway, this is a real optimization for almost
 " all Vim commands, as I don't have to press the Shift key to form chords to
@@ -323,7 +316,6 @@ nnoremap <leader>v V`]
 " Gundo.vim
 nnoremap <F5> :GundoToggle<CR>
 " }}}
-
 " NERDTree settings {{{
 " Put focus to the NERD Tree with F3 (tricked by quickly closing it and
 " immediately showing it again, since there is no :NERDTreeFocus command)
@@ -356,7 +348,6 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
             \ '\.o$', '\.so$', '\.egg$', '^\.git$' ]
 
 " }}}
-
 " TagList settings {{{
 nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
 nnoremap <leader>L :TlistClose<CR>
@@ -388,10 +379,6 @@ let Tlist_Display_Tag_Scope=0
 let Tlist_Use_Right_Window=1
 
 " }}}
-
-" vim-flake8 default configuration
-let g:flake8_max_line_length=120
-
 " Conflict markers {{{
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -399,7 +386,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " shortcut to jump to next conflict marker
 nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 " }}}
-
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -554,7 +540,6 @@ if has("autocmd")
     augroup end "}}}
 endif
 " }}}
-
 " Skeleton processing {{{
 
 if has("autocmd")
@@ -575,18 +560,15 @@ if has("autocmd")
 endif " has("autocmd")
 
 " }}}
-
 " Restore cursor position upon reopening files {{{
 autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
 " }}}
-
 " Common abbreviations / misspellings {{{
 source ~/.vim/autocorrect.vim
 " }}}
-
 " Extra vi-compatibility {{{
 " set extra vi-compatible options
 set cpoptions+=$     " when changing a line, don't redisplay, but put a '$' at
@@ -596,11 +578,12 @@ au filetype vim set formatoptions-=o
                      " somehow, during vim filetype detection, this gets set
                      " for vim files, so explicitly unset it again
 " }}}
-
 " Extra user or machine specific settings {{{
 source ~/.vim/user.vim
 " }}}
-
+" label1 {{{
+" vim-flake8 default configuration
+let g:flake8_max_line_length=120
 " Creating underline/overline headings for markup languages
 " Inspired by http://sphinx.pocoo.org/rest.html#sections
 nnoremap <leader>1 yyPVr=jyypVr=
@@ -649,7 +632,7 @@ else
     "colorscheme mustang_silent
     colorscheme badwolf
 endif
-
+" }}}
 " Pulse ------------------------------------------------------------------- {{{
 
 function! PulseCursorLine()
@@ -689,14 +672,12 @@ function! PulseCursorLine()
 endfunction
 
 " }}}
-
 " Powerline configuration ------------------------------------------------- {{{
 
 "let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols = 'fancy'
 
 " }}}
-
 " Python mode configuration ----------------------------------------------- {{{
 
 " Don't run pylint on every save
@@ -704,7 +685,7 @@ let g:pymode_lint = 0
 let g:pymode_lint_write = 0
 
 " }}}
-
+" label2 {{{
 " Learn Vim Script the Hard Way Exercises
 "noremap - ddp
 "noremap _ ddkP
@@ -753,3 +734,4 @@ nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
 " Run tests
 inoremap <leader>w <esc>:write<cr>:!./run_tests.sh %<cr>
 nnoremap <leader>w :!./run_tests.sh<cr>
+" }}}

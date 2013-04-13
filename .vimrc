@@ -1,3 +1,4 @@
+" mine {{{
 set tags+=~/tags
 set path+=~/code/yr
 set path+=/media/volgrp/yr
@@ -101,6 +102,44 @@ set wmw=0
 nnoremap H <c-w>h<c-w><Bar>
 nnoremap L <c-w>l<c-w><Bar>
 map ff :vertical wincmd f<CR>
+" }}}
+" comment {{{
+" Personal preference .vimrc file
+" Maintained by Vincent Driessen <vincent@datafox.nl>
+"
+" My personally preferred version of vim is the one with the "big" feature
+" set, in addition to the following configure options:
+"
+"     ./configure --with-features=BIG
+"                 --enable-pythoninterp --enable-rubyinterp
+"                 --enable-enablemultibyte --enable-gui=no --with-x --enable-cscope
+"                 --with-compiledby="Vincent Driessen <vincent@datafox.nl>"
+"                 --prefix=/usr
+"
+" To start vim without using this .vimrc file, use:
+"     vim -u NORC
+"
+" To start vim without loading any .vimrc or plugins, use:
+"     vim -u NONE
+"
+
+" Use vim settings, rather then vi settings (much better!)
+" }}}
+" This must be first, because it changes other options as a side effect. {{{
+set nocompatible
+
+" Use pathogen to easily modify the runtime path to include all plugins under
+" the ~/.vim/bundle directory
+filetype off                    " force reloading *after* pathogen loaded
+call pathogen#infect()
+call pathogen#helptags()
+filetype plugin indent on       " enable detection, plugins and indenting in one step
+syntax on
+
+" Change the mapleader from \ to ,
+let mapleader=","
+let maplocalleader="\\"
+" }}}
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in
 set nowrap                      " don't wrap lines
@@ -524,6 +563,163 @@ set formatoptions-=o " don't start new lines w/ comment leader on pressing 'o'
 au filetype vim set formatoptions-=o
                      " somehow, during vim filetype detection, this gets set
                      " for vim files, so explicitly unset it again
+" }}}
+" Extra user or machine specific settings {{{
+source ~/.vim/user.vim
+" }}}
+" label1 {{{
+" vim-flake8 default configuration
+let g:flake8_max_line_length=120
+" Creating underline/overline headings for markup languages
+" Inspired by http://sphinx.pocoo.org/rest.html#sections
+nnoremap <leader>1 yyPVr=jyypVr=
+nnoremap <leader>2 yyPVr*jyypVr*
+nnoremap <leader>3 yypVr=
+nnoremap <leader>4 yypVr-
+nnoremap <leader>5 yypVr^
+nnoremap <leader>6 yypVr"
+
+iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit
+iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi
+iab lllorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi.  Integer hendrerit lacus sagittis erat fermentum tincidunt.  Cras vel dui neque.  In sagittis commodo luctus.  Mauris non metus dolor, ut suscipit dui.  Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum.  Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor
+
+if has("gui_running")
+    "set guifont=saxMono:h14 linespace=3
+    "set guifont=Anonymous\ for\ Powerline:h12 linespace=2
+    "set guifont=Mensch\ for\ Powerline:h14 linespace=0
+    "set guifont=Droid\ Sans\ Mono:h14 linespace=0
+    "set guifont=Ubuntu\ Mono:h18 linespace=3
+    set guifont=Source\ Code\ Pro\ Light:h14 linespace=0
+
+    "colorscheme molokai
+    "colorscheme railscat
+    "colorscheme kellys
+    "colorscheme wombat256
+    "colorscheme mustang
+    "colorscheme mustang_silent
+    colorscheme badwolf
+
+    " Remove toolbar, left scrollbar and right scrollbar
+    set guioptions-=T
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+else
+    set bg=dark
+
+    "colorscheme mustang_silent
+    "colorscheme molokai
+    "colorscheme railscat
+    "colorscheme kellys
+    "colorscheme molokai_deep
+    "colorscheme wombat256
+    "colorscheme mustang
+    "colorscheme mustang_silent
+    colorscheme badwolf
+endif
+" }}}
+" Pulse ------------------------------------------------------------------- {{{
+
+function! PulseCursorLine()
+    let current_window = winnr()
+
+    windo set nocursorline
+    execute current_window . 'wincmd w'
+
+    setlocal cursorline
+
+    redir => old_hi
+        silent execute 'hi CursorLine'
+    redir END
+    let old_hi = split(old_hi, '\n')[0]
+    let old_hi = substitute(old_hi, 'xxx', '', '')
+
+    hi CursorLine guibg=#3a3a3a
+    redraw
+    sleep 20m
+
+    hi CursorLine guibg=#4a4a4a
+    redraw
+    sleep 30m
+
+    hi CursorLine guibg=#3a3a3a
+    redraw
+    sleep 30m
+
+    hi CursorLine guibg=#2a2a2a
+    redraw
+    sleep 20m
+
+    execute 'hi ' . old_hi
+
+    windo set cursorline
+    execute current_window . 'wincmd w'
+endfunction
+
+" }}}
+" Powerline configuration ------------------------------------------------- {{{
+
+"let g:Powerline_symbols = 'compatible'
+let g:Powerline_symbols = 'fancy'
+
+" }}}
+" Python mode configuration ----------------------------------------------- {{{
+
+" Don't run pylint on every save
+let g:pymode_lint = 0
+let g:pymode_lint_write = 0
+
+" }}}
+" label2 {{{
+" Learn Vim Script the Hard Way Exercises
+"noremap - ddp
+"noremap _ ddkP
+
+" C-U in insert/normal mode, to uppercase the word under cursor
+inoremap <c-u> <esc>viwUea
+nnoremap <c-u> viwUe
+
+iabbr m@@ me@nvie.com
+iabbr v@@ vincent@3rdcloud.com
+iabbr ssig --<cr>Vincent Driessen<cr>vincent@3rdcloud.com
+
+" Quote words under cursor
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+
+" Quote current selection
+" TODO: This only works for selections that are created "forwardly"
+vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
+vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
+
+
+" Define operator-pending mappings to quickly apply commands to function names
+" and/or parameter lists in the current line
+onoremap inf :<c-u>normal! 0f(hviw<cr>
+onoremap anf :<c-u>normal! 0f(hvaw<cr>
+onoremap in( :<c-u>normal! 0f(vi(<cr>
+onoremap an( :<c-u>normal! 0f(va(<cr>
+
+" "Next" tag
+onoremap int :<c-u>normal! 0f<vit<cr>
+onoremap ant :<c-u>normal! 0f<vat<cr>
+
+" Function argument selection (change "around argument", change "inside argument")
+onoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
+vnoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
+
+" Split previously opened file ('#') in a split window
+nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
+nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
+
+" Grep searches
+"nnoremap <leader>g :silent execute "grep! -R " . shellescape('<cword>') . " ."<cr>:copen 12<cr>
+"nnoremap <leader>G :silent execute "grep! -R " . shellescape('<cWORD>') . " ."<cr>:copen 12<cr>
+
+" Run tests
+inoremap <leader>w <esc>:write<cr>:!./run_tests.sh %<cr>
+nnoremap <leader>w :!./run_tests.sh<cr>
 " }}}
 " Edit the vimrc file {{{
 nnoremap <silent> <leader>e :e $MYVIMRC<CR>

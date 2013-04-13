@@ -525,6 +525,7 @@ au filetype vim set formatoptions-=o
                      " somehow, during vim filetype detection, this gets set
                      " for vim files, so explicitly unset it again
 " }}}
-" Edit the vimrc file
+" Edit the vimrc file {{{
 nnoremap <silent> <leader>e :e $MYVIMRC<CR>
 nnoremap <silent> <leader>v :so $MYVIMRC<CR>
+" }}}

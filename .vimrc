@@ -3,7 +3,6 @@ set path+=~/code/yr
 set path+=/media/volgrp/yr
 set path+=/media/volgrp/myproject_copy/git/work/yr
 
-set hlsearch
 set mouse=""
 set helplang=cn
 set encoding=utf8
@@ -102,7 +101,7 @@ nnoremap L <c-w>l<c-w><Bar>
 map ff :vertical wincmd f<CR>
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in
-set nowrap                      " don't wrap lines
+" set nowrap                      " don't wrap lines
 set tabstop=4                   " a tab is four spaces
 set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
 set expandtab                   " expand tabs by default (overloadable per file type later)
@@ -247,7 +246,8 @@ function! CurDir()
     let curdir = substitute(getcwd(), $HOME, "~", "g")
     return curdir
 endfunction
-set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+" set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 set cursorline                  " underline the current line, for quick orientation
 " Split previously opened file ('#') in a split window
 nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>

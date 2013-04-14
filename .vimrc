@@ -11,7 +11,6 @@ set fileencodings=utf8,gbk,big5
 
 set backupdir=~/.vimswaps,/tmp
 syntax on
-set number
 filetype plugin on
 set expandtab
 set shiftwidth=2
@@ -250,3 +249,8 @@ function! CurDir()
 endfunction
 set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
 set cursorline                  " underline the current line, for quick orientation
+" Split previously opened file ('#') in a split window
+nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
+nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
+" Quickly close the current window
+nnoremap <leader>q :q<CR>

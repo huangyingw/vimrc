@@ -95,7 +95,7 @@ au! BufRead,BufNewFile *.hta  setfiletype html
 " let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 " Mapping ESC in insert mode and command mode to double j
 imap jj <C-[>
-cmap jj  <C-[]]
+" cmap jj  <C-[]]
 " This sets the minimum window height to 0, so you can stack many more files before things get crowded. Vim will only display the filename. 
 set wmw=0
 nnoremap H <c-w>h<c-w><Bar>

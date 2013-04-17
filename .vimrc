@@ -194,8 +194,8 @@ nnoremap <silent> <leader>e :e $MYVIMRC<CR>
 nnoremap <silent> <leader>v :so $MYVIMRC<CR>
 " Keep search matches in the middle of the window and pulse the line when moving
 " to them.
-nnoremap n n:call PulseCursorLine()<cr>
-nnoremap N N:call PulseCursorLine()<cr>
+" nnoremap n n:call PulseCursorLine()<cr>
+" nnoremap N N:call PulseCursorLine()<cr>
 " Pulse ------------------------------------------------------------------- {{{
 
 function! PulseCursorLine()

@@ -3,7 +3,7 @@ set path+=~/code/yr
 set path+=/media/volgrp/yr
 set path+=/media/volgrp/myproject_copy/git/work/yr
 
-set mouse=""
+" set mouse=""
 set helplang=cn
 set encoding=utf8
 set fileencodings=utf8,gbk,big5
@@ -13,7 +13,6 @@ syntax on
 filetype plugin on
 set expandtab
 set shiftwidth=2
-set tabstop=2
 " Change the mapleader from \ to ,
 let mapleader=","
 let maplocalleader="\\"
@@ -102,7 +101,7 @@ map ff :vertical wincmd f<CR>
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in
 " set nowrap                      " don't wrap lines
-set tabstop=4                   " a tab is four spaces
+set tabstop=2                   " a tab is four spaces
 set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
 set expandtab                   " expand tabs by default (overloadable per file type later)
 set shiftwidth=4                " number of spaces to use for autoindenting
@@ -129,7 +128,7 @@ set nolist                      " don't show invisible characters by default,
 set pastetoggle=<F2>            " when in insert mode, press <F2> to go to
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
-set mouse=a                     " enable using the mouse if terminal emulator
+" set mouse=a                     " enable using the mouse if terminal emulator
                                 "    supports it (xterm does)
 set fileformats="unix,dos,mac"
 set formatoptions+=1            " When wrapping paragraphs, don't end lines

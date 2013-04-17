@@ -12,7 +12,6 @@ set backupdir=~/.vimswaps,/tmp
 syntax on
 filetype plugin on
 set expandtab
-set shiftwidth=2
 " Change the mapleader from \ to ,
 let mapleader=","
 let maplocalleader="\\"
@@ -104,7 +103,7 @@ set showmode                    " always show what mode we're currently editing 
 set tabstop=2                   " a tab is four spaces
 set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
 set expandtab                   " expand tabs by default (overloadable per file type later)
-set shiftwidth=4                " number of spaces to use for autoindenting
+set shiftwidth=2                " number of spaces to use for autoindenting
 set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 set autoindent                  " always set autoindenting on

@@ -252,3 +252,9 @@ nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
 nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
+
+" Yank/paste to the OS clipboard with ,y and ,p
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+yy
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P

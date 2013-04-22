@@ -177,9 +177,19 @@ augroup autoload_cscope
  au BufEnter *.[chly]  call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufEnter *.cc      call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufEnter *.java    call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.js      call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.jsp     call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.hta     call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.htm     call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.html    call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.[chly] call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.cc     call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.java   call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.js     call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.jsp    call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.hta    call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.htm    call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.html   call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
 augroup END
 
 let &cpo = s:save_cpo

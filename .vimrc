@@ -108,8 +108,8 @@ set autoindent                  " always set autoindenting on
 set copyindent                  " copy the previous indentation on autoindenting
 set number                      " always show line numbers
 set showmatch                   " set show matching parenthesis
-set ignorecase                  " ignore case when searching
-set smartcase                   " ignore case if search pattern is all lowercase,
+"set ignorecase                  " ignore case when searching
+"set smartcase                   " ignore case if search pattern is all lowercase,
                                 "    case-sensitive otherwise
 set smarttab                    " insert tabs on the start of a line according to
                                 "    shiftwidth, not tabstop
@@ -143,8 +143,8 @@ nnoremap <leader>N :setlocal number!<cr>
 
 " Thanks to Steve Losh for this liberating tip
 " See http://stevelosh.com/blog/2010/09/coming-home-to-vim
-nnoremap / /\v
-vnoremap / /\v
+nnoremap / /\v\c
+vnoremap / /\v\c
 
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>

@@ -10,7 +10,6 @@ set fileencodings=utf8,gbk,big5
 set backupdir=~/.vimswaps,/tmp
 syntax on
 filetype plugin on
-set expandtab
 " Change the mapleader from \ to ,
 let mapleader=","
 let maplocalleader="\\"

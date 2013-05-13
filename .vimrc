@@ -235,9 +235,9 @@ nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
 " Quickly close the current window
 nnoremap Q :q<CR>
 " Quickly open current dir in a vertical windows
-nnoremap <leader>w :vs .<CR>
+nnoremap W :vs .<CR>
 " Quickly open current dir in current windows
-nnoremap <leader>d :e .<CR>
+nnoremap D :e .<CR>
 " Quickly reload current file
 nnoremap E :e!<CR>
 " Quickly save current file

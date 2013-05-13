@@ -238,6 +238,8 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>w :vs .<CR>
 " Quickly open current dir in current windows
 nnoremap <leader>d :e .<CR>
+" Quickly reload current file
+nnoremap ll :e!<CR>
 
 " Yank/paste to the OS clipboard with ,y and ,p
 nnoremap <leader>y "+y

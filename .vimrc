@@ -240,6 +240,8 @@ nnoremap <leader>w :vs .<CR>
 nnoremap <leader>d :e .<CR>
 " Quickly reload current file
 nnoremap E :e!<CR>
+" Quickly save current file
+nnoremap S :w<CR>
 
 " Yank/paste to the OS clipboard with ,y and ,p
 nnoremap <leader>y "+y

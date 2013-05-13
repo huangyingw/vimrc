@@ -234,8 +234,10 @@ nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
 nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
-" Quickly open current dir
+" Quickly open current dir in a vertical windows
 nnoremap <leader>w :vs .<CR>
+" Quickly open current dir in current windows
+nnoremap <leader>d :e .<CR>
 
 " Yank/paste to the OS clipboard with ,y and ,p
 nnoremap <leader>y "+y

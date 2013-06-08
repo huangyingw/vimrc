@@ -82,8 +82,6 @@ inoremap { {}<LEFT>
 "set bg=dark
 "set paste
 "set nopaste
-"Paste toggle - when pasting something in, don't indent.
-set pastetoggle=<F3>
 xnoremap p pgvy
 au! BufRead,BufNewFile *.hta  setfiletype html
 " let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
@@ -122,7 +120,7 @@ set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
 
 set nolist                      " don't show invisible characters by default,
                                 " but it is enabled for some file types (see later)
-set pastetoggle=<F2>            " when in insert mode, press <F2> to go to
+set pastetoggle=<F3>            " when in insert mode, press <F2> to go to
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
 " set mouse=a                     " enable using the mouse if terminal emulator
@@ -217,7 +215,6 @@ function! PulseCursorLine()
 endfunction
 
 " }}}
-set pastetoggle=<F3>
 " 状态栏
 set laststatus=2      " 总是显示状态栏
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue

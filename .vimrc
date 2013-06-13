@@ -239,6 +239,8 @@ nnoremap D :e .<CR>
 nnoremap E :e!<CR>
 " Quickly save current file
 nnoremap S :w<CR>
+" Quickly save and exit
+nnoremap X :x<CR>
 
 " Yank/paste to the OS clipboard with ,y and ,p
 nnoremap <leader>y "+y

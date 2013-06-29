@@ -96,10 +96,10 @@ map ff :vertical wincmd f<CR>
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in
 " set nowrap                      " don't wrap lines
-set tabstop=2                   " a tab is two spaces
+set tabstop=4                   " a tab is two spaces
 set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
 set expandtab                   " expand tabs by default (overloadable per file type later)
-set shiftwidth=2                " number of spaces to use for autoindenting
+set shiftwidth=4                " number of spaces to use for autoindenting
 set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 set autoindent                  " always set autoindenting on
@@ -224,7 +224,7 @@ function! CurDir()
     return curdir
 endfunction
 " set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
-set statusline=[%n]\%{CurDir()}/%f%m%r%h
+set statusline=[%n]\%f%m%r%h\ %{CurDir()}
 set cursorline                  " underline the current line, for quick orientation
 " Split previously opened file ('#') in a split window
 nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>

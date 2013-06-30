@@ -92,7 +92,9 @@ imap jj <C-[>
 set wmw=0
 nnoremap hh <c-w>h<c-w><Bar>
 nnoremap ll <c-w>l<c-w><Bar>
-map ff :vertical wincmd f<CR>
+nnoremap ff <c-f>
+nnoremap bb <c-b>
+map oo :vertical wincmd f<CR>
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in
 " set nowrap                      " don't wrap lines

@@ -93,7 +93,7 @@ set wmw=0
 nnoremap hh <c-w>h<c-w><Bar>
 nnoremap ll <c-w>l<c-w><Bar>
 nnoremap ff <c-f>
-nnoremap bb <c-b>
+nnoremap vv <c-b>
 nnoremap <c-l> l
 nnoremap <c-h> h
 map oo :vertical wincmd f<CR>

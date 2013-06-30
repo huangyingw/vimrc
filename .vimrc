@@ -90,8 +90,8 @@ imap jj <C-[>
 " cmap jj  <C-[]]
 " This sets the minimum window height to 0, so you can stack many more files before things get crowded. Vim will only display the filename. 
 set wmw=0
-nnoremap H <c-w>h<c-w><Bar>
-nnoremap L <c-w>l<c-w><Bar>
+nnoremap hh <c-w>h<c-w><Bar>
+nnoremap ll <c-w>l<c-w><Bar>
 map ff :vertical wincmd f<CR>
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in

@@ -174,8 +174,8 @@ nnoremap <Space> za
 vnoremap <Space> za
 " }}}
 " Edit the vimrc file
-nnoremap <silent> <leader>e :e $MYVIMRC<CR>
-nnoremap <silent> <leader>f :e $HOME/.loadrc<CR>
+nnoremap <silent> <leader>e :vs $MYVIMRC<CR>
+nnoremap <silent> <leader>f :vs $HOME/.loadrc<CR>
 nnoremap <silent> <leader>v :so $MYVIMRC<CR>
 " Keep search matches in the middle of the window and pulse the line when moving
 " to them.
@@ -220,8 +220,6 @@ function! PulseCursorLine()
 endfunction
 
 " }}}
-" 状态栏
-set laststatus=2      " 总是显示状态栏
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 " 获取当前路径，将$HOME转化为~
 function! CurDir()

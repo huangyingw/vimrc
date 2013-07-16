@@ -232,6 +232,8 @@ set cursorline                  " underline the current line, for quick orientat
 " Split previously opened file ('#') in a split window
 nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
 nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
+" Show file name
+nnoremap F :f<CR>
 " Quickly close the current window
 nnoremap Q :q<CR>
 " Quickly open current dir in a vertical windows

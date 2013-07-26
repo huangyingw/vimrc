@@ -227,7 +227,16 @@ function! CurDir()
     return curdir
 endfunction
 " set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
-set statusline=[%n]\%f%m%r%h\ %{CurDir()}
+set statusline=[%n]\%f%m%r%h\ 
+"set statusline +=%1*\ %n\ %*            "buffer number
+"set statusline +=%5*%{&ff}%*            "file format
+"set statusline +=%3*%y%*                "file type
+set statusline +=%F%*            "full path
+"set statusline +=%2*%m%*                "modified flag
+set statusline +=%=%5l%*             "current line
+set statusline +=/%L%*               "total lines
+set statusline +=%4v\ %*             "virtual column number
+"set statusline +=%2*0x%04B\ %*          "character under cursor
 set cursorline                  " underline the current line, for quick orientation
 " Split previously opened file ('#') in a split window
 nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>

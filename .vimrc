@@ -255,7 +255,7 @@ nnoremap W :vs .<CR>
 " Quickly open current dir in current windows
 nnoremap D :e .<CR>
 " Quickly reload current file
-nnoremap E :mkview! e!<CR>
+nnoremap E :mkview<CR>:e!<CR>
 nnoremap M :mkview <CR>
 " Quickly save current file
 nnoremap S :w<CR>

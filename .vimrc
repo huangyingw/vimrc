@@ -161,6 +161,10 @@ set foldmethod=manual " detect triple-{ style fold markers
 set foldlevelstart=99           " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
+set viewoptions=cursor,folds,slash,unix
+" let g:skipview_files = ['*\.vim'] 
 " }}}
 " Editor layout {{{
 set termencoding=utf-8
@@ -251,7 +255,8 @@ nnoremap W :vs .<CR>
 " Quickly open current dir in current windows
 nnoremap D :e .<CR>
 " Quickly reload current file
-nnoremap E :e!<CR>
+nnoremap E :mkview! e!<CR>
+nnoremap M :mkview <CR>
 " Quickly save current file
 nnoremap S :w<CR>
 " Quickly save and exit

@@ -155,7 +155,8 @@ nnoremap <C-y> 2<C-y>
 " Folding rules {{{
 set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
-set foldmethod=syntax " detect triple-{ style fold markers
+set foldmethod=manual " detect triple-{ style fold markers
+"set foldmethod=syntax " detect triple-{ style fold markers
 " set foldmethod=indent " detect triple-{ style fold markers
 set foldlevelstart=99           " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo

@@ -163,6 +163,10 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
+inoremap F <C-O>za
+nnoremap F za
+onoremap F <C-C>za
+vnoremap F zf
 set viewoptions=cursor,folds,slash,unix
 " let g:skipview_files = ['*\.vim'] 
 " }}}

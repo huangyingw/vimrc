@@ -239,10 +239,10 @@ function! CurDir()
 endfunction
 " set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
 set statusline=[%n]\%f%m%r%h\ 
-set statusline +=%F%*            "full path
-set statusline +=%5l%*             "current line
-set statusline +=/%L%*               "total lines
-set statusline +=%4v%*             "virtual column number
+set statusline +=%F            "full path
+set statusline +=%5l             "current line
+set statusline +=/%L               "total lines
+set statusline +=%4v             "virtual column number
 "set statusline +=%2*%m%*                "modified flag
 "set statusline +=%1*\ %n\ %*            "buffer number
 "set statusline +=%5*%{&ff}%*            "file format

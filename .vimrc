@@ -155,18 +155,20 @@ nnoremap <C-y> 2<C-y>
 " Folding rules {{{
 set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
-set foldmethod=manual " detect triple-{ style fold markers
+"set foldmethod=manual " detect triple-{ style fold markers
 "set foldmethod=syntax " detect triple-{ style fold markers
 " set foldmethod=indent " detect triple-{ style fold markers
+set syntax=java 
+set foldmethod=syntax
 set foldlevelstart=99           " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
-inoremap F <C-O>za
-nnoremap F za
-onoremap F <C-C>za
-vnoremap F zf
+"inoremap <silent> <leader>f <C-O>za
+"nnoremap <silent> <leader>f za
+"onoremap <silent> <leader>f <C-C>za
+"vnoremap <silent> <leader>f zf
 set viewoptions=cursor,folds,slash,unix
 " let g:skipview_files = ['*\.vim'] 
 " }}}
@@ -237,14 +239,14 @@ function! CurDir()
 endfunction
 " set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
 set statusline=[%n]\%f%m%r%h\ 
+set statusline +=%F%*            "full path
+set statusline +=%5l%*             "current line
+set statusline +=/%L%*               "total lines
+set statusline +=%4v%*             "virtual column number
+"set statusline +=%2*%m%*                "modified flag
 "set statusline +=%1*\ %n\ %*            "buffer number
 "set statusline +=%5*%{&ff}%*            "file format
 "set statusline +=%3*%y%*                "file type
-set statusline +=%F%*            "full path
-"set statusline +=%2*%m%*                "modified flag
-set statusline +=%=%5l%*             "current line
-set statusline +=/%L%*               "total lines
-set statusline +=%4v\ %*             "virtual column number
 "set statusline +=%2*0x%04B\ %*          "character under cursor
 set cursorline                  " underline the current line, for quick orientation
 " Split previously opened file ('#') in a split window

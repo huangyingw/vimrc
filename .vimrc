@@ -158,7 +158,7 @@ set foldcolumn=2                " add a fold column
 "set foldmethod=manual " detect triple-{ style fold markers
 "set foldmethod=syntax " detect triple-{ style fold markers
 " set foldmethod=indent " detect triple-{ style fold markers
-set syntax=java 
+set syntax=c
 set foldmethod=syntax
 set foldlevelstart=99           " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
@@ -238,7 +238,8 @@ function! CurDir()
     return curdir
 endfunction
 " set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
-set statusline=[%n]\%f%m%r%h\ 
+"set statusline=\%f%m%r%h[%n]
+set statusline=%m%r%h[%n]
 set statusline +=%F            "full path
 set statusline +=%5l             "current line
 set statusline +=/%L               "total lines

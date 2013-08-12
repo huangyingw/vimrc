@@ -260,7 +260,7 @@ nnoremap Q :q<CR>
 " Quickly open current dir in a vertical windows
 nnoremap W :vs .<CR>
 " Quickly open current dir in current windows
-nnoremap D :e .<CR>
+nnoremap D :pwd <CR>
 " Quickly reload current file
 nnoremap E :mkview<CR>:e!<CR>
 " Quickly save current file

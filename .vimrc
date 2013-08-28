@@ -246,7 +246,7 @@ endfunction
 " set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
 "set statusline=[%n]\%f%m%r%h
 set statusline=[%n]%m%r%h\ %f
-set statusline +=\ %.90F            "full path
+set statusline +=\ %.65F            "full path
 set statusline +=%=        " Switch to the right side            
 set statusline +=\ %l             "current line
 set statusline +=/%L               "total lines
@@ -316,3 +316,5 @@ function! MyFoldText()
   let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
   return sub . info
 endfunction
+
+execute pathogen#infect()

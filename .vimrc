@@ -316,3 +316,16 @@ function! MyFoldText()
   let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
   return sub . info
 endfunction
+
+execute pathogen#infect()
+" map <C-t> :tabedit :CommandT<CR>
+" powerline{
+"  set guifont=PowerlineSymbols\ for\ Powerline
+"  set nocompatible
+"  set t_Co=256
+"  let g:Powerline_symbols = 'fancy'
+"  }
+" 设置tablist插件只显示当前编辑文件的tag内容，而非当前所有打开文件的tag内容
+let Tlist_Show_One_File=1
+"打开taglist窗口时，光标也进入到taglist窗口中
+let Tlist_GainFocus_On_ToggleOpen = 1

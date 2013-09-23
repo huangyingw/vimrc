@@ -151,8 +151,10 @@ nnoremap <leader>N :setlocal number!<cr>
 
 " Thanks to Steve Losh for this liberating tip
 " See http://stevelosh.com/blog/2010/09/coming-home-to-vim
-nnoremap / /\v\c
-vnoremap / /\v\c
+" nnoremap / /\v\c
+" vnoremap / /\v\c
+nnoremap / /\c
+vnoremap / /\c
 
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>

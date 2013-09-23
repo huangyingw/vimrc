@@ -330,4 +330,4 @@ let Tlist_Show_One_File=1
 "打开taglist窗口时，光标也进入到taglist窗口中
 let Tlist_GainFocus_On_ToggleOpen = 1
 nmap <f2> :set number! number?<cr>
-nmap <leader>d :set wrap!<cr>
+nmap <leader>w :set wrap!<cr>

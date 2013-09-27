@@ -168,6 +168,16 @@ set foldcolumn=2                " add a fold column
 " set foldmethod=indent " detect triple-{ style fold markers
 set syntax=c
 set foldmethod=syntax
+
+let javaScript_fold=1         " JavaScript
+let perl_fold=1               " Perl
+let php_folding=1             " PHP
+let r_syntax_folding=1        " R
+let ruby_fold=1               " Ruby
+let sh_fold_enabled=1         " sh
+let vimsyn_folding='af'       " Vim script
+let xml_syntax_folding=1      " XML
+
 set foldlevelstart=99           " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold

@@ -378,3 +378,5 @@ else
   nmap <leader>cs :let @*=expand("%")<CR>
   nmap <leader>cl :let @*=expand("%:p")<CR>
 endif
+nnoremap M zM
+nnoremap R zR

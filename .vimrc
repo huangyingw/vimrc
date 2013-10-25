@@ -391,4 +391,4 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
-:command -nargs=+ FF :vertical scscope find f "<args>"
+:command -nargs=1 FF :vertical scscope find f <q-args>

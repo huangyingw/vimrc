@@ -405,3 +405,5 @@ else
   nmap ,cs :let @+=expand("%")<CR>
   nmap ,cl :let @+=expand("%:p")<CR>
 endif
+nnoremap fh <c-w>R
+nnoremap fl <c-w>r

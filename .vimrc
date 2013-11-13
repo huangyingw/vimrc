@@ -274,8 +274,6 @@ nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
 nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
 " Show file name
 nnoremap F :echom expand('%:p')<CR>
-" Quickly close the current window
-nnoremap Q :q<CR>
 " Quickly open current dir in a vertical windows
 nnoremap W :vs .<CR>
 " Quickly open current dir in current windows
@@ -407,3 +405,9 @@ else
 endif
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r
+function! RememberQuit()
+    let @"=expand("%:p")
+    q
+endfunction
+" Quickly close the current window
+nnoremap Q :call RememberQuit()<cr> 

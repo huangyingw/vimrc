@@ -403,7 +403,7 @@ if has('win32')
   nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
 else
   nmap fs :let @"=expand("%")<CR>
-  nmap ,l :let @"=expand("%:p")<CR>
+  nmap ,p :let @"=expand("%:p")<CR>
 endif
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r

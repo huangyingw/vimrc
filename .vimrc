@@ -400,7 +400,7 @@ if has('win32')
   nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
 else
   nmap fs :let @"=expand("%")<CR>
-  nmap P :let @"=expand("%:p")<CR>
+  nmap <leader>p :let @"=expand("%:p")<CR>
 endif
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r
@@ -416,3 +416,4 @@ nnoremap F :call ShowRemember()<cr>
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
 nnoremap H :vs /export/home1/username/cscope_db/cscope.files<CR>
+nnoremap L :vs <C-R>"<CR>

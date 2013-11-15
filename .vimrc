@@ -273,7 +273,6 @@ set cursorline                  " underline the current line, for quick orientat
 nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
 nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
 " Show file name
-nnoremap F :echom expand('%:p')<CR>
 " Quickly open current dir in a vertical windows
 nnoremap W :vs .<CR>
 " Quickly open current dir in current windows
@@ -401,7 +400,7 @@ if has('win32')
   nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
 else
   nmap fs :let @"=expand("%")<CR>
-  nmap ,p :let @"=expand("%:p")<CR>
+  nmap P :let @"=expand("%:p")<CR>
 endif
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r
@@ -409,5 +408,11 @@ function! RememberQuit()
     let @"=expand("%:p")
     q
 endfunction
+function! ShowRemember()
+    echom expand('%:p')
+    let @"=expand("%:p")
+endfunction
+nnoremap F :call ShowRemember()<cr>  
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
+nnoremap G :vs /export/home1/username/cscope_db/cscope.files<CR>

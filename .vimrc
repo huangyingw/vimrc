@@ -412,8 +412,8 @@ function! ShowRemember()
     let @"=expand("%:p")
     echom expand('%:p')
 endfunction
-nnoremap F :echom expand('%:p')<cr>  
-" nnoremap F :call ShowRemember()<cr>  
+" nnoremap F :echom expand('%:p')<cr>  
+nnoremap F :call ShowRemember()<cr>  
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
 nnoremap H :vs /export/home1/username/cscope_db/cscope.files<CR>

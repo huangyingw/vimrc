@@ -416,5 +416,5 @@ endfunction
 nnoremap F :call ShowRemember()<cr>  
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
-nnoremap H :vs /export/home1/username/cscope_db/cscope.files<CR>
+nnoremap H :vs /export/home1/username/cscope_db/<CR>
 nnoremap L :vs <C-R>"<CR>

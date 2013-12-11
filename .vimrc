@@ -416,12 +416,6 @@ endfunction
 nnoremap F :call ShowRemember()<cr>  
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
-function! ShowVITAG()
-  let cur_dir = expand("%:p:h")
-  let cur_dir = substitute(cur_dir, '.*/', "", "")
-  let cur_dir = "/export/home1/username/cscope_db/".cur_dir
-  exe 'vs '.cur_dir
-endfunction
 nnoremap H :call ShowVITAG()<cr> 
 " nnoremap H :vs /export/home1/username/cscope_db/<CR>
 nnoremap L :vs <C-R>"<CR>

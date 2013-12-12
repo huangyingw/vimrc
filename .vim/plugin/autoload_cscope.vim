@@ -182,7 +182,10 @@ augroup autoload_cscope
  au BufEnter *.java    call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufEnter *.js      call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufEnter *.jsp     call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.py      call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.vim     call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufEnter *.xhtml   call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
+ au BufEnter *.xml     call <SID>Cycle_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.[chly] call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.cc     call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.hta    call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
@@ -191,7 +194,10 @@ augroup autoload_cscope
  au BufUnload *.java   call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.js     call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.jsp    call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.py     call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.vim    call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
  au BufUnload *.xhtml  call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
+ au BufUnload *.xml    call <SID>Unload_csdb() | call <SID>Cycle_macros_menus()
 augroup END
 
 let &cpo = s:save_cpo

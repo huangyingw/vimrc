@@ -99,10 +99,10 @@ let g:nextval_plugin_loaded = 1
 
 " default keymappings
 if !hasmapto('<Plug>nextvalInc')
-	nmap <silent> <unique> <C-a> <Plug>nextvalInc
+	nmap <silent> <unique> + <Plug>nextvalInc
 endif
 if !hasmapto('<Plug>nextvalDec')
-	nmap <silent> <unique> <C-x> <Plug>nextvalDec
+	nmap <silent> <unique> - <Plug>nextvalDec
 endif
 " map <Plug> to internal function
 nnoremap <unique> <script> <Plug>nextvalInc <SID>nextvalInc

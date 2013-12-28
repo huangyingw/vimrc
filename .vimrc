@@ -419,3 +419,11 @@ nnoremap Q :call RememberQuit()<cr>
 nnoremap H :call ShowVITAG()<cr> 
 " nnoremap H :vs /export/home1/username/cscope_db/<CR>
 nnoremap L :vs <C-R>"<CR>
+" Pathogen load
+filetype off
+
+call pathogen#infect()
+call pathogen#helptags()
+
+filetype plugin indent on
+syntax on

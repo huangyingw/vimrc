@@ -1,3 +1,6 @@
 .vim/.netrwhist
 .vim/view/*
 .vim/bundle
+*.findresult
+.vim/doc/tags
+.vim/doc/LargeFile.txt

@@ -417,7 +417,8 @@ nnoremap F :call ShowRemember()<cr>
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
 nnoremap H :call ShowVITAG()<cr> 
-" nnoremap H :vs /export/home1/username/cscope_db/<CR>
+nnoremap T :vs /export/home1/username/cscope_db/<CR>
+" nnoremap Y :!sh ("%:p")<CR>
 nnoremap L :vs <C-R>"<CR>
 " Pathogen load
 filetype off

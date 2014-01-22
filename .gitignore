@@ -3,3 +3,5 @@
 .vim/bundle
 *.findresult
 .vim/eclim/doc/tags
+.vim/doc/tags
+.vim/doc/LargeFile.txt

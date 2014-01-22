@@ -2,3 +2,4 @@
 .vim/view/*
 .vim/bundle
 *.findresult
+.vim/eclim/doc/tags

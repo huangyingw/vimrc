@@ -5,3 +5,4 @@
 .vim/eclim/doc/tags
 .vim/doc/tags
 .vim/doc/LargeFile.txt
+*.un~

@@ -285,7 +285,7 @@ nnoremap S :w<CR>
 nnoremap X :x<CR>
 
 " Yank/paste to the OS clipboard with ,y and ,p
-nnoremap <leader>y "+y
+nnoremap Y "+y
 nnoremap <leader>Y "+yy
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
@@ -410,6 +410,7 @@ function! RememberQuit()
 endfunction
 function! ShowRemember()
     let @"=expand("%:p")
+    let @+=expand('%:p')
     echom expand('%:p')
 endfunction
 " nnoremap F :echom expand('%:p')<cr>  

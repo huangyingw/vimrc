@@ -23,7 +23,7 @@ com! -bang Large		call s:LargeFile(<bang>0,expand("%"))
 " ---------------------------------------------------------------------
 "  Options: {{{1
 if !exists("g:LargeFile")
- let g:LargeFile= 2	" in megabytes
+ let g:LargeFile= 2.8	" in megabytes
 endif
 
 " ---------------------------------------------------------------------

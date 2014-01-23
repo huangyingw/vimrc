@@ -418,7 +418,7 @@ nnoremap F :call ShowRemember()<cr>
 nnoremap Q :call RememberQuit()<cr> 
 nnoremap H :call ShowVITAG()<cr> 
 nnoremap T :vs /export/home1/username/cscope_db/<CR>
-" nnoremap Y :!sh ("%:p")<CR>
+nnoremap Y :!sh %:p<CR>
 nnoremap L :vs <C-R>"<CR>
 " Pathogen load
 filetype off

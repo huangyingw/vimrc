@@ -410,7 +410,10 @@ function! RememberQuit()
 endfunction
 function! ShowRemember()
     let @"=expand("%:p")
-    let @+=expand('%:p')
+    let os = substitute(system('uname'), "\n", "", "")
+    if os == "Linux"
+      let @+=expand('%:p')
+    endif
     echom expand('%:p')
 endfunction
 " nnoremap F :echom expand('%:p')<cr>  

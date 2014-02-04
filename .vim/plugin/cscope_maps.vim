@@ -23,6 +23,14 @@
 " Jason Duell       jduell@alumni.princeton.edu     2002/3/7
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function s:windowdir()
+  if winbufnr(0) == -1
+    let unislash = getcwd()
+  else 
+    let unislash = fnamemodify(bufname(winbufnr(0)), ':p:h')
+  endif
+    return tr(unislash, '\', '/')
+endfunc
 
 " This tests to see if vim was configured with the '--enable-cscope' option
 " when it was compiled.  If it wasn't, time to recompile vim... 
@@ -39,7 +47,9 @@ if has("cscope")
 
     " add any cscope database in current directory
     if filereadable("cscope.out")
+      if !cscope_connection(3, "out", a:s:windowdir())
         cs add cscope.out  
+      endif
     " else add the database pointed to by environment variable 
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB

@@ -470,5 +470,3 @@ filetype plugin indent on     " required!
 " NOTE: comments after Bundle commands are not allowed.
 Bundle "Chiel92/vim-autoformat"
 nnoremap U :Autoformat<CR><CR>
-if !exists("g:formatprg_python") | let g:formatprg_python = "autopep8" | endif
-if !exists("g:formatprg_py") | let g:formatprg_python = "autopep8" | endif

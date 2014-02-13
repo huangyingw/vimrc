@@ -118,9 +118,9 @@ set number                      " always show line numbers
 set showmatch                   " set show matching parenthesis
 "set ignorecase                  " ignore case when searching
 "set smartcase                   " ignore case if search pattern is all lowercase,
-                                "    case-sensitive otherwise
+"    case-sensitive otherwise
 set smarttab                    " insert tabs on the start of a line according to
-                                "    shiftwidth, not tabstop
+"    shiftwidth, not tabstop
 set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
 set virtualedit=all             " allow the cursor to go in to "invalid" places
 set hlsearch                    " highlight search terms
@@ -129,19 +129,19 @@ set gdefault                    " search/replace "globally" (on a line) by defau
 set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
 
 set nolist                      " don't show invisible characters by default,
-                                " but it is enabled for some file types (see later)
+" but it is enabled for some file types (see later)
 set pastetoggle=<F3>            " when in insert mode, press <F2> to go to
-                                "    paste mode, where you can paste mass data
-                                "    that won't be autoindented
+"    paste mode, where you can paste mass data
+"    that won't be autoindented
 " set mouse=a                     " enable using the mouse if terminal emulator
-                                "    supports it (xterm does)
+"    supports it (xterm does)
 set fileformats="unix,dos,mac"
 set formatoptions+=1            " When wrapping paragraphs, don't end lines
-                                "    with 1-letter words (looks stupid)
+"    with 1-letter words (looks stupid)
 
 set nrformats=                  " make <C-a> and <C-x> play well with
-                                "    zero-padded numbers (i.e. don't consider
-                                "    them octal or hex)
+"    zero-padded numbers (i.e. don't consider
+"    them octal or hex)
 
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
@@ -180,7 +180,7 @@ let xml_syntax_folding=1      " XML
 
 set foldlevelstart=99           " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-                                " which commands trigger auto-unfold
+" which commands trigger auto-unfold
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
 "inoremap <silent> <leader>f <C-O>za
@@ -195,7 +195,7 @@ set termencoding=utf-8
 set encoding=utf-8
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
-                                "    if there is only one window
+"    if there is only one window
 set cmdheight=1                 " use a status bar that is 2 rows high
 " }}}
 " Folding {{{
@@ -213,47 +213,47 @@ nnoremap <silent> <leader>v :so $MYVIMRC<CR>
 " Pulse ------------------------------------------------------------------- {{{
 
 function! PulseCursorLine()
-    let current_window = winnr()
+  let current_window = winnr()
 
-    windo set nocursorline
-    execute current_window . 'wincmd w'
+  windo set nocursorline
+  execute current_window . 'wincmd w'
 
-    setlocal cursorline
+  setlocal cursorline
 
-    redir => old_hi
-        silent execute 'hi CursorLine'
-    redir END
-    let old_hi = split(old_hi, '\n')[0]
-    let old_hi = substitute(old_hi, 'xxx', '', '')
+  redir => old_hi
+  silent execute 'hi CursorLine'
+  redir END
+  let old_hi = split(old_hi, '\n')[0]
+  let old_hi = substitute(old_hi, 'xxx', '', '')
 
-    hi CursorLine guibg=#3a3a3a
-    redraw
-    sleep 20m
+  hi CursorLine guibg=#3a3a3a
+  redraw
+  sleep 20m
 
-    hi CursorLine guibg=#4a4a4a
-    redraw
-    sleep 30m
+  hi CursorLine guibg=#4a4a4a
+  redraw
+  sleep 30m
 
-    hi CursorLine guibg=#3a3a3a
-    redraw
-    sleep 30m
+  hi CursorLine guibg=#3a3a3a
+  redraw
+  sleep 30m
 
-    hi CursorLine guibg=#2a2a2a
-    redraw
-    sleep 20m
+  hi CursorLine guibg=#2a2a2a
+  redraw
+  sleep 20m
 
-    execute 'hi ' . old_hi
+  execute 'hi ' . old_hi
 
-    windo set cursorline
-    execute current_window . 'wincmd w'
+  windo set cursorline
+  execute current_window . 'wincmd w'
 endfunction
 
 " }}}
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 " 获取当前路径，将$HOME转化为~
 function! CurDir()
-    let curdir = substitute(getcwd(), $HOME, "~", "g")
-    return curdir
+  let curdir = substitute(getcwd(), $HOME, "~", "g")
+  return curdir
 endfunction
 " set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
 "set statusline=[%n]\%f%m%r%h
@@ -379,15 +379,15 @@ nnoremap M zM
 nnoremap R zR
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+      \gvy/<C-R><C-R>=substitute(
+      \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+      \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+      \gvy?<C-R><C-R>=substitute(
+      \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+      \gV:call setreg('"', old_reg, old_regtype)<CR>
 :command -nargs=1 FF :vertical scscope find f <q-args>
 
 " http://vim.wikia.com/wiki/Copy_filename_to_clipboard
@@ -405,16 +405,16 @@ endif
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r
 function! RememberQuit()
-    let @"=expand("%:p")
-    q
+  let @"=expand("%:p")
+  q
 endfunction
 function! ShowRemember()
-    let @"=expand("%:p")
-    let os = substitute(system('uname'), "\n", "", "")
-    if os == "Linux"
-      let @+=expand('%:p')
-    endif
-    echom expand('%:p')
+  let @"=expand("%:p")
+  let os = substitute(system('uname'), "\n", "", "")
+  if os == "Linux"
+    let @+=expand('%:p')
+  endif
+  echom expand('%:p')
 endfunction
 " nnoremap F :echom expand('%:p')<cr>  
 nnoremap F :call ShowRemember()<cr>  
@@ -431,3 +431,42 @@ call pathogen#helptags()
 
 filetype plugin indent on
 syntax on
+
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My bundles here:
+"
+" original repos on GitHub
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non-GitHub repos
+Bundle 'git://git.wincent.com/command-t.git'
+" Git repos on your local machine (i.e. when working on your own plugin)
+" Bundle 'file:///Users/gmarik/path/to/plugin'
+" ...
+
+filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install (update) bundles
+" :BundleSearch(!) foo - search (or refresh cache first) for foo
+" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle commands are not allowed.
+Bundle "Chiel92/vim-autoformat"
+nnoremap U :Autoformat<CR><CR> 

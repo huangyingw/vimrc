@@ -470,4 +470,6 @@ filetype plugin indent on     " required!
 " NOTE: comments after Bundle commands are not allowed.
 Bundle "Chiel92/vim-autoformat"
 nnoremap tt :Autoformat<CR><CR>
-nnoremap J :call FormatPython()<cr> 
+nnoremap D :vs %:p<CR>
+" Quickly open current dir in current windows
+nnoremap <leader>d :pwd <CR>

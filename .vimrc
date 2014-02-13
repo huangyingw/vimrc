@@ -275,8 +275,6 @@ nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
 " Show file name
 " Quickly open current dir in a vertical windows
 nnoremap W :vs .<CR>
-" Quickly open current dir in current windows
-nnoremap D :pwd <CR>
 " Quickly reload current file
 nnoremap E :mkview<CR>:e!<CR>
 " Quickly save current file
@@ -404,6 +402,8 @@ else
 endif
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r
+function! DuplicateCurrentFile()
+endfunction
 function! FormatPython()
   silent !clear
   execute "!" . 'autopep8 --in-place ' . " " . expand('%:p')
@@ -473,5 +473,7 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 Bundle "Chiel92/vim-autoformat"
-nnoremap U :Autoformat<CR><CR>
-nnoremap J :call FormatPython()<cr> 
+nnoremap tt :Autoformat()<cr> 
+nnoremap D :vs %:p<CR>
+" Quickly open current dir in current windows
+nnoremap <leader>d :pwd <CR>

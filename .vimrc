@@ -404,10 +404,6 @@ else
 endif
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r
-function! FormatPython()
-  silent !clear
-  execute "!" . 'autopep8 --in-place ' . " " . expand('%:p')
-endfunction
 function! RememberQuit()
   let @"=expand("%:p")
   q
@@ -473,5 +469,5 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 Bundle "Chiel92/vim-autoformat"
-nnoremap U :Autoformat<CR><CR>
+nnoremap tt :Autoformat<CR><CR>
 nnoremap J :call FormatPython()<cr> 

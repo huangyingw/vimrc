@@ -1,8 +1,3 @@
-set tags+=~/tags
-set path+=~/code/yr
-set path+=/media/volgrp/yr
-set path+=/media/volgrp/myproject_copy/git/work/yr
-
 set helplang=cn
 set encoding=utf8
 set fileencodings=utf8,gbk,big5
@@ -225,22 +220,6 @@ function! CurDir()
   let curdir = substitute(getcwd(), $HOME, "~", "g")
   return curdir
 endfunction
-" set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
-"set statusline=[%n]\%f%m%r%h
-set statusline=[%n]%m%r%h\ %f
-set statusline +=\ %.65F            "full path
-set statusline +=%=        " Switch to the right side            
-set statusline +=\ %l             "current line
-set statusline +=/%L               "total lines
-set statusline +=\ %v             "virtual column number
-"set statusline +=%2*%m%*                "modified flag
-"set statusline +=%1*\ %n\ %*            "buffer number
-"set statusline +=%5*%{&ff}%*            "file format
-"set statusline +=%3*%y%*                "file type
-"set statusline +=%2*0x%04B\ %*          "character under cursor
-set cursorline                  " underline the current line, for quick orientation
-" Split previously opened file ('#') in a split window
-
 
 " Set a nicer foldtext function
 set foldtext=MyFoldText()
@@ -332,38 +311,7 @@ filetype off                  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-
-" My bundles here:
-"
-" original repos on GitHub
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-" non-GitHub repos
-Bundle 'git://git.wincent.com/command-t.git'
-" Git repos on your local machine (i.e. when working on your own plugin)
-" Bundle 'file:///Users/gmarik/path/to/plugin'
-" ...
-
 filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
-Bundle "huangyingw/vim-autoformat"
-Bundle "Valloric/YouCompleteMe"
 
 function TrimEndLines()
     let save_cursor = getpos(".")

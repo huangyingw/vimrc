@@ -1,19 +1,9 @@
-set tags+=~/tags
-set path+=~/code/yr
-set path+=/media/volgrp/yr
-set path+=/media/volgrp/myproject_copy/git/work/yr
-
 set helplang=cn
-set encoding=utf8
 set fileencodings=utf8,gbk,big5
-
 set backupdir=~/.vimswaps,/tmp
-syntax on
-filetype plugin on
 " Change the mapleader from \ to ,
 let mapleader=","
 let maplocalleader="\\"
-filetype indent on
 
 function! CHANGE_CURR_DIR()
   let _dir = expand("%:p:h")
@@ -31,61 +21,12 @@ autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "nor
 source ~/.vim/plugin/cscope_maps.vim
 
 autoclose html/xml tag autocmd BufNewFile,BufRead *.html,*.htm,*.xml inoremap </ </<c-x><c-o>
-function! RemovePairs()
-  let l:line = getline(".")
-  let l:previous_char = l:line[col(".")-1] " 取得当前光标前一个字符
-
-  if index(["(", "[", "{"], l:previous_char) != -1
-    let l:original_pos = getpos(".")
-    execute "normal %"
-    let l:new_pos = getpos(".")
-
-    " 如果没有匹配的右括号
-    if l:original_pos == l:new_pos
-      execute "normal! a\<BS>"
-      return
-    end
-
-    let l:line2 = getline(".")
-    if len(l:line2) == col(".")
-      " 如果右括号是当前行最后一个字符
-      execute "normal! v%xa"
-    else
-      " 如果右括号不是当前行最后一个字符
-      execute "normal! v%xi"
-    end
-
-  else
-    execute "normal! a\<BS>"
-  end
-endfunction
-" 用退格键删除一个左括号时同时删除对应的右括号
-inoremap <BS> <ESC>:call RemovePairs()<CR>a
-function! RemoveNextDoubleChar(char)
-  let l:line = getline(".")
-  let l:next_char = l:line[col(".")] " 取得当前光标后一个字符
-
-  if a:char == l:next_char
-    execute "normal! l"
-  else
-    execute "normal! i" . a:char . ""
-  end
-endfunction
-inoremap ) <ESC>:call RemoveNextDoubleChar(')')<CR>a
-inoremap ] <ESC>:call RemoveNextDoubleChar(']')<CR>a
-inoremap } <ESC>:call RemoveNextDoubleChar('}')<CR>a
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
 "set bg=dark
 "set paste
 "set nopaste
 xnoremap p pgvy
 au! BufRead,BufNewFile *.hta  setfiletype html
 " let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-" Mapping ESC in insert mode and command mode to double j
-imap jj <C-[>
-" cmap jj  <C-[]]
 " This sets the minimum window height to 0, so you can stack many more files before things get crowded. Vim will only display the filename. 
 set wmw=0
 map oo :vertical wincmd f<CR>
@@ -172,75 +113,13 @@ set lazyredraw                  " don't update the display while executing macro
 set laststatus=2                " tell VIM to always put a status line in, even
 "    if there is only one window
 set cmdheight=1                 " use a status bar that is 2 rows high
-" }}}
-" Folding {{{
-" }}}
-" Edit the vimrc file
-" Keep search matches in the middle of the window and pulse the line when moving
-" to them.
-" nnoremap n n:call PulseCursorLine()<cr>
-" nnoremap N N:call PulseCursorLine()<cr>
-" Pulse ------------------------------------------------------------------- {{{
 
-function! PulseCursorLine()
-  let current_window = winnr()
-
-  windo set nocursorline
-  execute current_window . 'wincmd w'
-
-  setlocal cursorline
-
-  redir => old_hi
-  silent execute 'hi CursorLine'
-  redir END
-  let old_hi = split(old_hi, '\n')[0]
-  let old_hi = substitute(old_hi, 'xxx', '', '')
-
-  hi CursorLine guibg=#3a3a3a
-  redraw
-  sleep 20m
-
-  hi CursorLine guibg=#4a4a4a
-  redraw
-  sleep 30m
-
-  hi CursorLine guibg=#3a3a3a
-  redraw
-  sleep 30m
-
-  hi CursorLine guibg=#2a2a2a
-  redraw
-  sleep 20m
-
-  execute 'hi ' . old_hi
-
-  windo set cursorline
-  execute current_window . 'wincmd w'
-endfunction
-
-" }}}
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 " 获取当前路径，将$HOME转化为~
 function! CurDir()
   let curdir = substitute(getcwd(), $HOME, "~", "g")
   return curdir
 endfunction
-" set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
-"set statusline=[%n]\%f%m%r%h
-set statusline=[%n]%m%r%h\ %f
-set statusline +=\ %.65F            "full path
-set statusline +=%=        " Switch to the right side            
-set statusline +=\ %l             "current line
-set statusline +=/%L               "total lines
-set statusline +=\ %v             "virtual column number
-"set statusline +=%2*%m%*                "modified flag
-"set statusline +=%1*\ %n\ %*            "buffer number
-"set statusline +=%5*%{&ff}%*            "file format
-"set statusline +=%3*%y%*                "file type
-"set statusline +=%2*0x%04B\ %*          "character under cursor
-set cursorline                  " underline the current line, for quick orientation
-" Split previously opened file ('#') in a split window
-
 
 " Set a nicer foldtext function
 set foldtext=MyFoldText()
@@ -279,25 +158,6 @@ function! MyFoldText()
 endfunction
 
 execute pathogen#infect()
-" map <C-t> :tabedit :CommandT<CR>
-" powerline{
-"  set guifont=PowerlineSymbols\ for\ Powerline
-"  set nocompatible
-"  set t_Co=256
-"  let g:Powerline_symbols = 'fancy'
-"  }
-" 设置tablist插件只显示当前编辑文件的tag内容，而非当前所有打开文件的tag内容
-let Tlist_Show_One_File=1
-"打开taglist窗口时，光标也进入到taglist窗口中
-let Tlist_GainFocus_On_ToggleOpen = 1
-
-" Tell vim to remember certain things when we exit
-"  '10  :  marks will be remembered for up to 10 previously edited files
-"  "100 :  will save up to 100 lines for each register
-"  :20  :  up to 20 lines of command-line history will be remembered
-"  %    :  saves and restores the buffer list
-"  n... :  where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.viminfo
 
 function! ResCur()
   if line("'\"") <= line("$")
@@ -311,19 +171,9 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-:command -nargs=1 FF :vertical scscope find f <q-args>
-
-" http://vim.wikia.com/wiki/Copy_filename_to_clipboard
-" Convert slashes to backslashes for Windows.
-" nnoremap fh <c-w>R
-" nnoremap fl <c-w>r
-" Pathogen load
-filetype off
-
 call pathogen#infect()
 call pathogen#helptags()
 
-filetype plugin indent on
 syntax on
 
 set nocompatible              " be iMproved
@@ -332,34 +182,15 @@ filetype off                  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-
-" My bundles here:
-"
-" original repos on GitHub
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-" non-GitHub repos
-Bundle 'git://git.wincent.com/command-t.git'
-" Git repos on your local machine (i.e. when working on your own plugin)
-" Bundle 'file:///Users/gmarik/path/to/plugin'
-" ...
-
 filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
-Bundle "Chiel92/vim-autoformat"
+
+function TrimEndLines()
+    let save_cursor = getpos(".")
+    :silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+endfunction
+
+au BufWritePre *.java call TrimEndLines()
+au BufWritePre *.py call TrimEndLines()
+au BufWritePre *.vim call TrimEndLines()
+au BufWritePre *.vimrc call TrimEndLines()

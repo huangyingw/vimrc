@@ -75,7 +75,7 @@ vnoremap <Space> za
 "nnoremap <silent> <leader>f za
 "onoremap <silent> <leader>f <C-C>za
 "vnoremap <silent> <leader>f zf
-nnoremap <silent> <leader>e :vs $MYVIMRC<CR>
+nnoremap <silent> <leader>e :vs $HOME/vimrc/.vimrc<CR>
 nnoremap <silent> <leader>f :vs $HOME/.loadrc<CR>
 nnoremap <silent> <leader>v :so $MYVIMRC<CR>
 nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>

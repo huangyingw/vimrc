@@ -1,5 +1,4 @@
 set helplang=cn
-set encoding=utf8
 set fileencodings=utf8,gbk,big5
 set backupdir=~/.vimswaps,/tmp
 syntax on
@@ -117,53 +116,7 @@ set lazyredraw                  " don't update the display while executing macro
 set laststatus=2                " tell VIM to always put a status line in, even
 "    if there is only one window
 set cmdheight=1                 " use a status bar that is 2 rows high
-" }}}
-" Folding {{{
-" }}}
-" Edit the vimrc file
-" Keep search matches in the middle of the window and pulse the line when moving
-" to them.
-" nnoremap n n:call PulseCursorLine()<cr>
-" nnoremap N N:call PulseCursorLine()<cr>
-" Pulse ------------------------------------------------------------------- {{{
 
-function! PulseCursorLine()
-  let current_window = winnr()
-
-  windo set nocursorline
-  execute current_window . 'wincmd w'
-
-  setlocal cursorline
-
-  redir => old_hi
-  silent execute 'hi CursorLine'
-  redir END
-  let old_hi = split(old_hi, '\n')[0]
-  let old_hi = substitute(old_hi, 'xxx', '', '')
-
-  hi CursorLine guibg=#3a3a3a
-  redraw
-  sleep 20m
-
-  hi CursorLine guibg=#4a4a4a
-  redraw
-  sleep 30m
-
-  hi CursorLine guibg=#3a3a3a
-  redraw
-  sleep 30m
-
-  hi CursorLine guibg=#2a2a2a
-  redraw
-  sleep 20m
-
-  execute 'hi ' . old_hi
-
-  windo set cursorline
-  execute current_window . 'wincmd w'
-endfunction
-
-" }}}
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 " 获取当前路径，将$HOME转化为~
 function! CurDir()

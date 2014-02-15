@@ -362,4 +362,15 @@ filetype plugin indent on     " required!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
-Bundle "Chiel92/vim-autoformat"
+Bundle "huangyingw/vim-autoformat"
+Bundle "Valloric/YouCompleteMe"
+
+function TrimEndLines()
+    let save_cursor = getpos(".")
+    :silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+endfunction
+
+au BufWritePre *.py call TrimEndLines()
+au BufWritePre *.java call TrimEndLines()
+au BufWritePre *.vimrc call TrimEndLines()

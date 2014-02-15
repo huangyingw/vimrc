@@ -1,12 +1,6 @@
-set tags+=~/tags
-set path+=~/code/yr
-set path+=/media/volgrp/yr
-set path+=/media/volgrp/myproject_copy/git/work/yr
-
 set helplang=cn
 set encoding=utf8
 set fileencodings=utf8,gbk,big5
-
 set backupdir=~/.vimswaps,/tmp
 syntax on
 filetype plugin on
@@ -31,61 +25,12 @@ autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "nor
 source ~/.vim/plugin/cscope_maps.vim
 
 autoclose html/xml tag autocmd BufNewFile,BufRead *.html,*.htm,*.xml inoremap </ </<c-x><c-o>
-function! RemovePairs()
-  let l:line = getline(".")
-  let l:previous_char = l:line[col(".")-1] " 取得当前光标前一个字符
-
-  if index(["(", "[", "{"], l:previous_char) != -1
-    let l:original_pos = getpos(".")
-    execute "normal %"
-    let l:new_pos = getpos(".")
-
-    " 如果没有匹配的右括号
-    if l:original_pos == l:new_pos
-      execute "normal! a\<BS>"
-      return
-    end
-
-    let l:line2 = getline(".")
-    if len(l:line2) == col(".")
-      " 如果右括号是当前行最后一个字符
-      execute "normal! v%xa"
-    else
-      " 如果右括号不是当前行最后一个字符
-      execute "normal! v%xi"
-    end
-
-  else
-    execute "normal! a\<BS>"
-  end
-endfunction
-" 用退格键删除一个左括号时同时删除对应的右括号
-inoremap <BS> <ESC>:call RemovePairs()<CR>a
-function! RemoveNextDoubleChar(char)
-  let l:line = getline(".")
-  let l:next_char = l:line[col(".")] " 取得当前光标后一个字符
-
-  if a:char == l:next_char
-    execute "normal! l"
-  else
-    execute "normal! i" . a:char . ""
-  end
-endfunction
-inoremap ) <ESC>:call RemoveNextDoubleChar(')')<CR>a
-inoremap ] <ESC>:call RemoveNextDoubleChar(']')<CR>a
-inoremap } <ESC>:call RemoveNextDoubleChar('}')<CR>a
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
 "set bg=dark
 "set paste
 "set nopaste
 xnoremap p pgvy
 au! BufRead,BufNewFile *.hta  setfiletype html
 " let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-" Mapping ESC in insert mode and command mode to double j
-imap jj <C-[>
-" cmap jj  <C-[]]
 " This sets the minimum window height to 0, so you can stack many more files before things get crowded. Vim will only display the filename. 
 set wmw=0
 map oo :vertical wincmd f<CR>
@@ -225,22 +170,6 @@ function! CurDir()
   let curdir = substitute(getcwd(), $HOME, "~", "g")
   return curdir
 endfunction
-" set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
-"set statusline=[%n]\%f%m%r%h
-set statusline=[%n]%m%r%h\ %f
-set statusline +=\ %.65F            "full path
-set statusline +=%=        " Switch to the right side            
-set statusline +=\ %l             "current line
-set statusline +=/%L               "total lines
-set statusline +=\ %v             "virtual column number
-"set statusline +=%2*%m%*                "modified flag
-"set statusline +=%1*\ %n\ %*            "buffer number
-"set statusline +=%5*%{&ff}%*            "file format
-"set statusline +=%3*%y%*                "file type
-"set statusline +=%2*0x%04B\ %*          "character under cursor
-set cursorline                  " underline the current line, for quick orientation
-" Split previously opened file ('#') in a split window
-
 
 " Set a nicer foldtext function
 set foldtext=MyFoldText()
@@ -332,38 +261,7 @@ filetype off                  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-
-" My bundles here:
-"
-" original repos on GitHub
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-" non-GitHub repos
-Bundle 'git://git.wincent.com/command-t.git'
-" Git repos on your local machine (i.e. when working on your own plugin)
-" Bundle 'file:///Users/gmarik/path/to/plugin'
-" ...
-
 filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
-Bundle "huangyingw/vim-autoformat"
-Bundle "Valloric/YouCompleteMe"
 
 function TrimEndLines()
     let save_cursor = getpos(".")

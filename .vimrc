@@ -13,8 +13,6 @@ filetype plugin on
 " Change the mapleader from \ to ,
 let mapleader=","
 let maplocalleader="\\"
-nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
-nnoremap <leader>L :TlistClose<CR>
 filetype indent on
 
 function! CHANGE_CURR_DIR()
@@ -90,12 +88,6 @@ imap jj <C-[>
 " cmap jj  <C-[]]
 " This sets the minimum window height to 0, so you can stack many more files before things get crowded. Vim will only display the filename. 
 set wmw=0
-nnoremap hh <c-w>h<c-w><Bar>
-nnoremap ll <c-w>l<c-w><Bar>
-nnoremap ff <c-f>
-nnoremap vv <c-b>
-nnoremap <c-l> l
-nnoremap <c-h> h
 map oo :vertical wincmd f<CR>
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in
@@ -143,22 +135,9 @@ set nrformats=                  " make <C-a> and <C-x> play well with
 "    zero-padded numbers (i.e. don't consider
 "    them octal or hex)
 
-" Toggle show/hide invisible chars
-nnoremap <leader>i :set list!<cr>
 
-" Toggle line numbers
-nnoremap <leader>N :setlocal number!<cr>
 
-" Thanks to Steve Losh for this liberating tip
-" See http://stevelosh.com/blog/2010/09/coming-home-to-vim
-" nnoremap / /\v\c
-" vnoremap / /\v\c
-nnoremap / /\c
-vnoremap / /\c
 
-" Speed up scrolling of the viewport slightly
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
 " }}}
 " Folding rules {{{
 set foldenable                  " enable folding
@@ -183,10 +162,6 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 " which commands trigger auto-unfold
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
-"inoremap <silent> <leader>f <C-O>za
-"nnoremap <silent> <leader>f za
-"onoremap <silent> <leader>f <C-C>za
-"vnoremap <silent> <leader>f zf
 set viewoptions=cursor,folds,slash,unix
 " let g:skipview_files = ['*\.vim'] 
 " }}}
@@ -199,13 +174,8 @@ set laststatus=2                " tell VIM to always put a status line in, even
 set cmdheight=1                 " use a status bar that is 2 rows high
 " }}}
 " Folding {{{
-nnoremap <Space> za
-vnoremap <Space> za
 " }}}
 " Edit the vimrc file
-nnoremap <silent> <leader>e :vs $MYVIMRC<CR>
-nnoremap <silent> <leader>f :vs $HOME/.loadrc<CR>
-nnoremap <silent> <leader>v :so $MYVIMRC<CR>
 " Keep search matches in the middle of the window and pulse the line when moving
 " to them.
 " nnoremap n n:call PulseCursorLine()<cr>
@@ -270,25 +240,7 @@ set statusline +=\ %v             "virtual column number
 "set statusline +=%2*0x%04B\ %*          "character under cursor
 set cursorline                  " underline the current line, for quick orientation
 " Split previously opened file ('#') in a split window
-nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
-nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
-" Show file name
-" Quickly open current dir in a vertical windows
-nnoremap W :vs .<CR>
-" Quickly open current dir in current windows
-nnoremap D :pwd <CR>
-" Quickly reload current file
-nnoremap E :mkview<CR>:e!<CR>
-" Quickly save current file
-nnoremap S :w<CR>
-" Quickly save and exit
-nnoremap X :x<CR>
 
-" Yank/paste to the OS clipboard with ,y and ,p
-nnoremap Y "+y
-nnoremap <leader>Y "+yy
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
 
 " Set a nicer foldtext function
 set foldtext=MyFoldText()
@@ -338,8 +290,6 @@ execute pathogen#infect()
 let Tlist_Show_One_File=1
 "打开taglist窗口时，光标也进入到taglist窗口中
 let Tlist_GainFocus_On_ToggleOpen = 1
-nmap <f2> :set number! number?<cr>
-nmap <leader>w :set wrap!<cr>
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -361,68 +311,12 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-nnoremap <tab> %
-vnoremap <tab> %
-
-" Convert slashes to backslashes for Windows.
-if has('win32')
-  nmap <leader>cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-  nmap <leader>cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
-
-  " This will copy the path in 8.3 short format, for DOS and Windows 9x
-  nmap <leader>c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
-else
-  nmap <leader>cs :let @*=expand("%")<CR>
-  nmap <leader>cl :let @*=expand("%:p")<CR>
-endif
-nnoremap M zM
-nnoremap R zR
-" Search for selected text, forwards or backwards.
-vnoremap <silent> * :<C-U>
-      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-      \gvy/<C-R><C-R>=substitute(
-      \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-      \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> # :<C-U>
-      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-      \gvy?<C-R><C-R>=substitute(
-      \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-      \gV:call setreg('"', old_reg, old_regtype)<CR>
 :command -nargs=1 FF :vertical scscope find f <q-args>
 
 " http://vim.wikia.com/wiki/Copy_filename_to_clipboard
 " Convert slashes to backslashes for Windows.
-if has('win32')
-  nmap ,cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-  nmap ,cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
-
-  " This will copy the path in 8.3 short format, for DOS and Windows 9x
-  nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
-else
-  nmap fs :let @"=expand("%")<CR>
-  nmap <leader>p :let @"=expand("%:p")<CR>
-endif
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r
-function! RememberQuit()
-  let @"=expand("%:p")
-  q
-endfunction
-function! ShowRemember()
-  let @"=expand("%:p")
-  let os = substitute(system('uname'), "\n", "", "")
-  if os == "Linux"
-    let @+=expand('%:p')
-  endif
-  echom expand('%:p')
-endfunction
-" nnoremap F :echom expand('%:p')<cr>  
-nnoremap F :call ShowRemember()<cr>  
-" Quickly close the current window
-nnoremap Q :call RememberQuit()<cr> 
-nnoremap H :call ShowVITAG()<cr> 
-nnoremap T :vs /export/home1/username/cscope_db/<CR>
-nnoremap L :vs <C-R>"<CR>
 " Pathogen load
 filetype off
 
@@ -469,7 +363,3 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 Bundle "Chiel92/vim-autoformat"
-nnoremap tt :Autoformat<CR><CR>
-nnoremap D :vs %:p<CR>
-" Quickly open current dir in current windows
-nnoremap <leader>d :pwd <CR>

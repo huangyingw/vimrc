@@ -1,12 +1,9 @@
 set helplang=cn
 set fileencodings=utf8,gbk,big5
 set backupdir=~/.vimswaps,/tmp
-syntax on
-filetype plugin on
 " Change the mapleader from \ to ,
 let mapleader=","
 let maplocalleader="\\"
-filetype indent on
 
 function! CHANGE_CURR_DIR()
   let _dir = expand("%:p:h")
@@ -200,12 +197,10 @@ augroup END
 " nnoremap fh <c-w>R
 " nnoremap fl <c-w>r
 " Pathogen load
-filetype off
 
 call pathogen#infect()
 call pathogen#helptags()
 
-filetype plugin indent on
 syntax on
 
 set nocompatible              " be iMproved

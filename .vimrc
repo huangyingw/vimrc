@@ -158,25 +158,6 @@ function! MyFoldText()
 endfunction
 
 execute pathogen#infect()
-" map <C-t> :tabedit :CommandT<CR>
-" powerline{
-"  set guifont=PowerlineSymbols\ for\ Powerline
-"  set nocompatible
-"  set t_Co=256
-"  let g:Powerline_symbols = 'fancy'
-"  }
-" 设置tablist插件只显示当前编辑文件的tag内容，而非当前所有打开文件的tag内容
-let Tlist_Show_One_File=1
-"打开taglist窗口时，光标也进入到taglist窗口中
-let Tlist_GainFocus_On_ToggleOpen = 1
-
-" Tell vim to remember certain things when we exit
-"  '10  :  marks will be remembered for up to 10 previously edited files
-"  "100 :  will save up to 100 lines for each register
-"  :20  :  up to 20 lines of command-line history will be remembered
-"  %    :  saves and restores the buffer list
-"  n... :  where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.viminfo
 
 function! ResCur()
   if line("'\"") <= line("$")
@@ -189,12 +170,6 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
-
-" http://vim.wikia.com/wiki/Copy_filename_to_clipboard
-" Convert slashes to backslashes for Windows.
-" nnoremap fh <c-w>R
-" nnoremap fl <c-w>r
-" Pathogen load
 
 call pathogen#infect()
 call pathogen#helptags()
@@ -215,6 +190,7 @@ function TrimEndLines()
     call setpos('.', save_cursor)
 endfunction
 
-au BufWritePre *.py call TrimEndLines()
 au BufWritePre *.java call TrimEndLines()
+au BufWritePre *.py call TrimEndLines()
+au BufWritePre *.vim call TrimEndLines()
 au BufWritePre *.vimrc call TrimEndLines()

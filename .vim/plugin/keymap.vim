@@ -104,3 +104,4 @@ nnoremap H :call ShowVITAG()<cr>
 nnoremap T :vs /export/home1/username/cscope_db/<CR>
 nnoremap L :vs <C-R>"<CR>
 map <F5> :!sh %:p<CR>
+nnoremap gf gF

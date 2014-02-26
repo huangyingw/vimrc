@@ -314,11 +314,13 @@ call vundle#rc()
 filetype plugin indent on     " required!
 
 function TrimEndLines()
-    let save_cursor = getpos(".")
-    :silent! %s#\($\n\s*\)\+\%$##
-    call setpos('.', save_cursor)
+  let save_cursor = getpos(".")
+  :silent! %s#\($\n\s*\)\+\%$##
+  call setpos('.', save_cursor)
 endfunction
 
 au BufWritePre *.py call TrimEndLines()
 au BufWritePre *.java call TrimEndLines()
 au BufWritePre *.vimrc call TrimEndLines()
+"To have a space (ASCII 32) considered as a valid character for a file name
+:set isfname+=32

@@ -12,7 +12,7 @@ filetype indent on
 
 function! CHANGE_CURR_DIR()
   let _dir = expand("%:p:h")
-  exec "cd " . _dir
+  exec "cd " . fnameescape(_dir)
   unlet _dir
   if filereadable(".vimdc")
     source .vimdc

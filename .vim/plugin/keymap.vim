@@ -106,3 +106,4 @@ nnoremap L :vs "<C-R>""<CR>
 map <F5> :!sh %:p<CR>
 nnoremap gf gF
 map oo :vertical wincmd F<CR>
+nnoremap <silent> <leader>g :!gitk %:p<CR>

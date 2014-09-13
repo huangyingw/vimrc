@@ -107,3 +107,10 @@ map <F5> :!sh %:p<CR>
 nnoremap gf gF
 map oo :vertical wincmd F<CR>
 nnoremap <silent> <leader>g :!gitk %:p<CR>
+nnoremap <leader>1 :let @"=expand("%:p")<CR> 
+
+function! CompareTwoFiles()
+  execute '!kdiff3' @" expand("%:p")
+endfunc
+
+nnoremap <leader>2 :call CompareTwoFiles()<cr>   

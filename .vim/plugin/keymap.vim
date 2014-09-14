@@ -49,8 +49,6 @@ nnoremap E :mkview<CR>:e!<CR>
 nnoremap S :w<CR>
 " Quickly save and exit
 nnoremap X :x<CR>
-" Yank/paste to the OS clipboard with ,y and ,p
-nnoremap Y "+y
 nnoremap <leader>Y "+yy
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P

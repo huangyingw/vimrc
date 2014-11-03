@@ -28,6 +28,8 @@ nnoremap <leader>N :setlocal number!<cr>
 " vnoremap / /\v\c
 nnoremap / /\c
 vnoremap / /\c
+nnoremap ? ?\c
+vnoremap ? ?\c
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>

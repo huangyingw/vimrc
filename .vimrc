@@ -329,3 +329,4 @@ if os == "Linux"
 else
   set clipboard=unnamed 
 endif
+au FileType javascript call JavaScriptFold()

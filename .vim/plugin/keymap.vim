@@ -97,7 +97,8 @@ else
   nmap <leader>p :let @"=expand("%:p")<CR>
 endif
 " nnoremap F :echom expand('%:p')<cr>  
-nnoremap F :call ShowRemember()<cr>  
+" nnoremap F :call ShowRemember()<cr>  
+vnoremap <silent>f :normal! gvy<cr>:<C-U>exec '!sh ~/bashrc/vaa.sh ' . getcwd() . ' ' .  @@<CR>
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
 nnoremap H :call ShowVITAG()<cr> 

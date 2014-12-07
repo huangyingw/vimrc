@@ -104,7 +104,7 @@ nnoremap Q :call RememberQuit()<cr>
 nnoremap H :call ShowVITAG()<cr> 
 nnoremap T :vs /export/home1/username/cscope_db/<CR>
 nnoremap L :vs <C-R>"<CR>
-map <F5> :!sh %:p<CR>
+map <F5> :<C-U>exec '!sh ~/vishrc/vrun.sh ' . expand("%:p")<CR> 
 nnoremap gf gF
 map oo :vertical wincmd F<CR>
 nnoremap <silent> <leader>g :!gitk %:p<CR>

@@ -1,20 +1,19 @@
-let g:indexed_search_colors=0
 " File:         IndexedSearch.vim
 " Author:       Yakov Lerner <iler.ml@gmail.com>
 " URL:          http://www.vim.org/scripts/script.php?script_id=1682
-" Last change:  2006-11-21
-"
+" Last change:  2014-10-10
+
 " This script redefines 6 search commands (/,?,n,N,*,#). At each search,
-" it shows at which match number you are, and the total number 
+" it shows at which match number you are, and the total number
 " of matches, like this: "At Nth match out of M". This is printed
 " at the bottom line at every n,N,/,?,*,# search command, automatically.
 "
 " To try out the plugin, source it and play with N,n,*,#,/,? commands.
-" At the bottom line, you'll see wha it shows. There are no new 
+" At the bottom line, you'll see wha it shows. There are no new
 " commands and no new behavior to learn. Just additional info
 " on the bottom line, whenever you perform search.
 "
-" Works on vim6 and vim7. On very large files, won't cause slowdown 
+" Works on vim6 and vim7. On very large files, won't cause slowdown
 " because it checks the file size.
 " Don't use if you're sensitive to one of its components :-)
 "
@@ -22,11 +21,11 @@ let g:indexed_search_colors=0
 " -----------------------------------------------------
 " Checking Where You Are with respect to Search Matches
 " .....................................................
-" You can press \\ or \/ (that's backslach then slash), 
+" You can press \\ or \/ (that's backslach then slash),
 " or :ShowSearchIndex to show at which match index you are,
 " without moving cursor.
 "
-" If cursor is exactly on the match, the message is: 
+" If cursor is exactly on the match, the message is:
 "     At Nth match of M
 " If cursor is between matches, following messages are displayed:
 "     Betwen matches 189-190 of 300
@@ -42,271 +41,92 @@ let g:indexed_search_colors=0
 " In case of bugs and wishes, please email: iler.ml at gmail.com
 " ------------------------------------------------------
 
-
-" before 061119, it worked only vim7 not on vim6 (we use winrestview())
-" after  061119, works only on vim6 (we avoid winrestview on vim6)
-
-
-"if version < 700 | finish | endif " we need vim7 at least. Won't work for vim6
-
-"if &cp | echo "warning: IndexedSearch.vim need nocp" | finish | endif " we need &nocp mode
-
-if exists("g:indexed_search_plugin") | finish | endif
-let g:indexed_search_plugin = 1
-
-if !exists('g:indexed_search_colors')
-    let g:indexed_search_colors=1 " 1-use colors for messages, 0-no colors
+if exists("g:loaded_indexed_search") || &cp || v:version < 700
+    finish
 endif
-
-if !exists('g:indexed_search_shortmess')
-    let g:indexed_search_shortmess=0 " 1-longer messages; 0(or undefined)-longer messages.
-endif
-
-
-" ------------------ "Performance tuning limits" -------------------
-if !exists('g:search_index_max')
-  let g:search_index_max=30000 " max filesize(in lines) up to what
-                               " ShowCurrentSearchIndex() works
-endif
-if !exists("g:search_index_maxhit")
-  let g:search_index_maxhit=1000
-endif
-" -------------- End of Performance tuning limits ------------------
+let g:loaded_indexed_search = 1
 
 let s:save_cpo = &cpo
 set cpo&vim
 
 
-command! ShowSearchIndex :call s:ShowCurrentSearchIndex(1,'')
+" Performance tuning limits
+if !exists('g:indexed_search_max_lines')
+    " Max filesize (in lines) up to where the plugin works
+    let g:indexed_search_max_lines = 30000
+endif
 
+if !exists("g:indexed_search_max_hits")
+    " Max number of matches up to where the plugin stops counting
+    let g:indexed_search_max_hits = 1000
+endif
 
-" before 061114  we had op invocation inside the function but this
-"                did not properly keep @/ and direction (func.return restores @/ and direction)
-" after  061114  invoking op inside the function does not work because
-"                @/ and direction is restored at return from function
-"                We must have op invocation at the toplevel of mapping even though this
-"                makes mappings longer.
-nnoremap <silent>n :let v:errmsg=''<cr>:silent! norm! n<cr>:call <SID>ShowCurrentSearchIndex(0,'!')<cr>
-nnoremap <silent>N :let v:errmsg=''<cr>:silent! norm! N<cr>:call <SID>ShowCurrentSearchIndex(0,'!')<cr>
-nnoremap <silent>* :let v:errmsg=''<cr>:silent! norm! *<cr>:call <SID>ShowCurrentSearchIndex(0,'!')<cr>
-nnoremap <silent># :let v:errmsg=''<cr>:silent! norm! #<cr>:call <SID>ShowCurrentSearchIndex(0,'!')<cr>
+" Appearance settings
+if !exists('g:indexed_search_colors')
+    " 1 or null - use colors for messages,
+    " 0         - no colors
+    let g:indexed_search_colors = 1
+endif
 
+if !exists('g:indexed_search_shortmess')
+    " 1         - shorter messages;
+    " 0 or null - longer messages.
+    let g:indexed_search_shortmess = 0
+endif
 
-nnoremap <silent>\/        :call <SID>ShowCurrentSearchIndex(1,'')<cr>
-nnoremap <silent>\\        :call <SID>ShowCurrentSearchIndex(1,'')<cr>
-nnoremap <silent>g/        :call <SID>ShowCurrentSearchIndex(1,'')<cr>
+" Mappings
+if !exists('g:indexed_search_mappings')
+    let g:indexed_search_mappings = 1
+endif
 
+if !exists('g:indexed_search_dont_move')
+    let g:indexed_search_dont_move = 0
+endif
 
-" before 061120,  I had cmapping for <cr> which was very intrusive. Didn't work
-"                 with supertab iInde<c-x><c-p>(resulted in something like recursive <c-r>=
-" after  061120,  I remap [/?] instead of remapping <cr>. Works in vim6, too
+if !exists('g:indexed_search_unfold')
+    let g:indexed_search_unfold = 1
+endif
 
-nnoremap / :call <SID>DelaySearchIndex(0,'')<cr>/
-nnoremap ? :call <SID>DelaySearchIndex(0,'')<cr>?
+command! -bang ShowSearchIndex :call indexed_search#show_index(<bang>0)
 
+if g:indexed_search_mappings
+    " before 061120,  I had cmapping for <cr> which was very intrusive.
+    "                 Didn't work with supertab iInde<c-x><c-p> resulted in
+    "                 something like recursive <c-r>=.
+    " after  061120,  I remap [/?] instead of remapping <cr>. Works in vim6, too
+    nnoremap /  :ShowSearchIndex<CR>/
+    nnoremap ?  :ShowSearchIndex<CR>?
 
-let s:ScheduledEcho = ''
-let s:DelaySearchIndex = 0
-let g:IndSearchUT = &ut
-
-
-func! s:ScheduleEcho(msg,highlight)
-
-    "if &ut > 50 | let g:IndSearchUT=&ut | let &ut=50 | endif
-    "if &ut > 100 | let g:IndSearchUT=&ut | let &ut=100 | endif
-    if &ut > 200 | let g:IndSearchUT=&ut | let &ut=200 | endif
-    " 061116 &ut is sometimes not restored and drops permanently to 50. But how ?
-
-    let s:ScheduledEcho      = a:msg
-    let use_colors = !exists('g:indexed_search_colors') || g:indexed_search_colors
-    let s:ScheduledHighlight = ( use_colors ? a:highlight : "None" )
-
-    aug IndSearchEcho
-
-    au CursorHold * 
-      \ exe 'set ut='.g:IndSearchUT | 
-      \ if s:DelaySearchIndex | call s:ShowCurrentSearchIndex(0,'') | 
-      \    let s:ScheduledEcho = s:Msg | let s:ScheduledHighlight = s:Highlight |
-      \    let s:DelaySearchIndex = 0 | endif |
-      \ if s:ScheduledEcho != "" 
-      \ | exe "echohl ".s:ScheduledHighlight | echo s:ScheduledEcho | echohl None
-      \ | let s:ScheduledEcho='' | 
-      \ endif | 
-      \ aug IndSearchEcho | exe 'au!' | aug END | aug! IndSearchEcho
-    " how about moving contents of this au into function
-
-    aug END
-endfun " s:ScheduleEcho
-
-
-func! s:DelaySearchIndex(force,cmd)
-    let s:DelaySearchIndex = 1
-    call s:ScheduleEcho('','')
-endfunc
-
-
-func! s:ShowCurrentSearchIndex(force, cmd)
-    " NB: function saves and restores @/ and direction
-    " this used to cause me many troubles
-
-    call s:CountCurrentSearchIndex(a:force, a:cmd) " -> s:Msg, s:Highlight
-
-    if s:Msg != ""
-        call s:ScheduleEcho(s:Msg, s:Highlight )
-    endif
-endfun
-
-
-function! s:MilliSince( start )
-    " usage: let s = reltime() | sleep 100m | let milli = MilliSince(s)
-    let x = reltimestr( reltime( a:start ) )
-    " there can be leading spaces in x
-    let sec   = substitute(x, '^ *\([0-9]\+\)', '\1', '')
-    let frac = substitute(x, '\.\([0-9]\+\)',  '\1', '') . "000"
-    let milli = strpart( frac, 0, 3)
-    return sec * 1000 + milli
-endfun
-
-
-func! s:CountCurrentSearchIndex(force, cmd)
-" sets globals -> s:Msg , s:Highlight
-    let s:Msg = '' | let s:Highlight = ''
-    let builtin_errmsg = ""
-
-    " echo "" | " make sure old msg is erased
-    if a:cmd == '!'
-        " if cmd is '!', we do not execute any command but report
-        " last errmsg
-        if v:errmsg != ""
-            echohl Error
-            echomsg v:errmsg
-            echohl None
-        endif
-    elseif a:cmd != ''
-        let v:errmsg = ""
-
-        silent! exe "norm! ".a:cmd
-
-        if v:errmsg != ""
-            echohl Error
-            echomsg v:errmsg
-            echohl None
-        endif
-        
-        if line('$') >= g:search_index_max
-            " for large files, preserve original error messages and add nothing
-            return ""
-        endif
+    " before 061114  we had op invocation inside the function but this did not
+    "                properly keep @/ and direction (func.return restores @/
+    "                and direction)
+    " after  061114  invoking op inside the function does not work because
+    "                @/ and direction is restored at return from function
+    "                We must have op invocation at the toplevel of mapping even
+    "                though this makes mappings longer.
+    if g:indexed_search_dont_move
+        nnoremap <silent>* *N:ShowSearchIndex<CR>
+        nnoremap <silent># #N:ShowSearchIndex<CR>
     else
+        nnoremap <silent>* *:ShowSearchIndex<CR>
+        nnoremap <silent># #:ShowSearchIndex<CR>
     endif
 
-    if !a:force && line('$') >= g:search_index_max
-        let too_slow=1
-        " when too_slow, we'll want to switch the work over to CursorHold
-        return ""
-    endif
-    if @/ == '' | return "" | endif
-    if version >= 700 
-		let save = winsaveview()
-    endif
-    let line = line('.')
-    let vcol = virtcol('.')
-    norm gg0
-    let num = 0    " total # of matches in the buffer
-    let exact = -1
-    let after = 0
-    let too_slow = 0 " if too_slow, we'll want to switch the work over to CursorHold
-    let s_opt = 'Wc'
-    while search(@/, s_opt) && ( num <= g:search_index_maxhit  || a:force)
-        let num = num + 1
-        if line('.') == line && virtcol('.') == vcol
-            let exact = num
-        elseif line('.') < line || (line('.') == line && virtcol('.') < vcol)
-            let after = num
-        endif
-        let s_opt = 'W'
-    endwh
-    if version >= 700
-		call winrestview(save)
-	else
-		exe line
-		exe "norm! ".vcol."|"
-    endif
-    if !a:force && num > g:search_index_maxhit
-        if exact >= 0 
-            let too_slow=1 "  if too_slow, we'll want to switch the work over to CursorHold
-            let num=">".(num-1)
-        else
-            let s:Msg = ">".(num-1)." matches"
-            if v:errmsg != ""
-                let s:Msg = ""  " avoid overwriting builtin errmsg with our ">1000 matches"
-            endif
-            return ""
-        endif
-    endif
-
-    let s:Highlight = "Directory"
-    if num == "0"
-        let s:Highlight = "Error"
-        let prefix = "No matches "
-    elseif exact == 1 && num==1
-        " s:Highlight remains default
-        "let prefix = "At single match"
-        let prefix = "Single match"
-    elseif exact == 1
-        let s:Highlight = "Search"
-        "let prefix = "At 1st  match, # 1 of " . num
-        "let prefix = "First match, # 1 of " . num
-        let prefix = "First of " . num . " matches "
-    elseif exact == num
-        let s:Highlight = "LineNr"
-        "let prefix = "Last match, # ".num." of " . num
-        "let prefix = "At last match, # ".num." of " . num
-        let prefix = "Last of " . num . " matches "
-    elseif exact >= 0
-        "let prefix = "At # ".exact." match of " . num
-        "let prefix = "Match # ".exact." of " . num
-        "let prefix = "# ".exact." match of " . num
-        if exists('g:indexed_search_shortmess') && g:indexed_search_shortmess
-            let prefix = exact." of " . num . " matches "
-        else
-            let prefix = "Match ".exact." of " . num
-        endif
-    elseif after == 0
-        let s:Highlight = "MoreMsg"
-        let prefix = "Before first match, of ".num." matches "
-        if num == 1
-            let prefix = "Before single match"
-        endif
-    elseif after == num
-        let s:Highlight = "WarningMsg"
-        let prefix = "After last match of ".num." matches "
-        if num == 1
-            let prefix = "After single match"
-        endif
+    if g:indexed_search_unfold
+        nnoremap <silent>n nzv:ShowSearchIndex<CR>
+        nnoremap <silent>N Nzv:ShowSearchIndex<CR>
     else
-        let prefix = "Between matches ".after."-".(after+1)." of ".num
+        nnoremap <silent>n n:ShowSearchIndex<CR>
+        nnoremap <silent>N N:ShowSearchIndex<CR>
     endif
-    let s:Msg = prefix . "  /".@/ . "/"
-    return ""
-endfunc
+endif
 
-
-"           Messages Summary
-"
-" Short Message            Long Message
-" -------------------------------------------
-" %d of %d matches         Match %d of %d
-" Last of %d matches       <-same
-" First of %d matches      <-same
-" No matchess              <-same
-" -------------------------------------------
 
 let &cpo = s:save_cpo
 
 " Last changes
 " 2006-10-20 added limitation by # of matches
-" 061021 lerner fixed problem with cmap <enter> that screwed maps 
+" 061021 lerner fixed problem with cmap <enter> that screwed maps
 " 061021 colors added
 " 061022 fixed g/ when too many matches
 " 061106 got message to work with check for largefile right
@@ -346,7 +166,3 @@ let &cpo = s:save_cpo
 " - implement CursorHold bg counting to which too_slow will resort
 " - even on large files, we can show "At last match", "After last match"
 " - define global vars for all highlights, with defaults
-" hh
-" hh
-" hh
-" hh

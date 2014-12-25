@@ -14,7 +14,7 @@ function s:windowdir()
   else 
     let unislash = fnamemodify(bufname(winbufnr(0)), ':p:h')
   endif
-    return tr(unislash, '\', '/')
+  return tr(unislash, '\', '/')
 endfunc
 "
 "==
@@ -42,7 +42,8 @@ function s:Find_in_parent(fln,flsrt,flstp)
 endfunc
 function! VimSearch()
   normal! gvy<CR>
-  exec '!sh ~/vishrc/vaa.sh ' . <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME) . ' ' .  @@
+  let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
+  exec '!sh ~/vishrc/vaa.sh ' . b:csdbpath . ' ' .  @@
 endfunction
 function! ShowRemember()
   let @"=expand("%:p")

@@ -43,7 +43,9 @@ endfunc
 function! VimSearch()
   normal! gvy<CR>
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
-  exec '!sh ~/vishrc/vaa.sh ' . b:csdbpath . ' ' .  @@
+  let b:keyword = @@
+  exec '!sh ~/vishrc/vaa.sh ' . b:csdbpath . ' ' .  b:keyword
+  exec 'vsplit ' . b:keyword . '.faa.findresult'
 endfunction
 function! ShowRemember()
   let @"=expand("%:p")

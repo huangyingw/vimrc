@@ -2,6 +2,7 @@
 "set statusline=[%n]\%f%m%r%h
 set statusline=[%n]%m%r%h\ %f
 set statusline +=\ %.65F            "full path
+set statusline+=\ %{WordCount()}\ words,
 set statusline +=%=        " Switch to the right side            
 set statusline +=\ %l             "current line
 set statusline +=/%L               "total lines

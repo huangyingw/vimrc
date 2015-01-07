@@ -47,6 +47,10 @@ function! CSCSearch()
   exec '!sh ~/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword
   exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.csc.findresult'
 endfunction
+function! UpdateCscope()
+  let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
+  exec '!sh ~/bashrc/cscope.sh ' . b:csdbpath
+endfunction
 function! VimSearch()
   normal! gvy<CR>
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
@@ -58,6 +62,7 @@ function! ShowProjectRoot()
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
   let @+=b:csdbpath
   echom b:csdbpath
+  exec 'vsplit ' . b:csdbpath
 endfunction
 function! ShowRemember()
   let @+=expand('%:p')
@@ -169,3 +174,4 @@ function! CompareTwoFiles()
 endfunc
 
 nnoremap <leader>2 :call CompareTwoFiles()<cr>   
+nnoremap <leader>c :call UpdateCscope()<cr>   

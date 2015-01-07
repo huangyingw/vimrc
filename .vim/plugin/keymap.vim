@@ -40,6 +40,13 @@ function s:Find_in_parent(fln,flsrt,flstp)
   endwhile
   return "Nothing"
 endfunc
+function! CSCSearch()
+  normal! gvy<CR>
+  let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
+  let b:keyword = expand("<cword>")
+  exec '!sh ~/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword
+  exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.csc.findresult'
+endfunction
 function! VimSearch()
   normal! gvy<CR>
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
@@ -144,6 +151,7 @@ endif
 " nnoremap F :echom expand('%:p')<cr>  
 " nnoremap F :call ShowRemember()<cr>  
 vnoremap <silent>f :call VimSearch()<cr>  
+nmap <C-@> :call CSCSearch()<CR><CR>	
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
 nnoremap H :call ShowVITAG()<cr> 

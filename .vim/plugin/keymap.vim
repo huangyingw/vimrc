@@ -54,12 +54,13 @@ function! VimSearch()
   exec '!sh ~/vishrc/vaa.sh ' . b:csdbpath . ' ' .  b:keyword
   exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.faa.findresult'
 endfunction
+function! ShowProjectRoot()
+  let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
+  let @+=b:csdbpath
+  echom b:csdbpath
+endfunction
 function! ShowRemember()
-  let @"=expand("%:p")
-  let os = substitute(system('uname'), "\n", "", "")
-  if os == "Linux"
-    let @+=expand('%:p')
-  endif
+  let @+=expand('%:p')
   echom expand('%:p')
 endfunction
 nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
@@ -109,7 +110,7 @@ nnoremap <leader>P "+P
 nnoremap tt :Autoformat<CR><CR>
 nnoremap D :vs %:p<CR>
 " Quickly open current dir in current windows
-nnoremap <leader>d :pwd <CR>
+nnoremap <leader>d :call ShowProjectRoot()<cr>   
 nnoremap <tab> %
 vnoremap <tab> %
 nnoremap M zM
@@ -149,7 +150,7 @@ else
   nmap <leader>p :let @"=expand("%:p")<CR>
 endif
 " nnoremap F :echom expand('%:p')<cr>  
-" nnoremap F :call ShowRemember()<cr>  
+nnoremap F :call ShowRemember()<cr>  
 vnoremap <silent>f :call VimSearch()<cr>  
 nmap <C-@> :call CSCSearch()<CR><CR>	
 " Quickly close the current window

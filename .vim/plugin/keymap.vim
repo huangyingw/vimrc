@@ -151,7 +151,7 @@ endif
 " nnoremap F :echom expand('%:p')<cr>  
 " nnoremap F :call ShowRemember()<cr>  
 vnoremap <silent>f :call VimSearch()<cr>  
-nmap <C-@>s :call CSCSearch()<CR><CR>	
+nmap <C-@> :call CSCSearch()<CR><CR>	
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
 nnoremap H :call ShowVITAG()<cr> 

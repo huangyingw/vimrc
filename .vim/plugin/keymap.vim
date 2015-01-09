@@ -40,11 +40,18 @@ function s:Find_in_parent(fln,flsrt,flstp)
   endwhile
   return "Nothing"
 endfunc
+function! CSCSearchQ()
+  normal! gvy<CR>
+  let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
+  let b:keyword = expand("<cword>")
+  exec '!sh ~/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 1 . ' ' . 'qcsc'
+  exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.qcsc.findresult'
+endfunction
 function! CSCSearch()
   normal! gvy<CR>
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
   let b:keyword = expand("<cword>")
-  exec '!sh ~/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 4
+  exec '!sh ~/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 4 . ' ' . 'csc' 
   exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.csc.findresult'
 endfunction
 function! UpdateCscope()
@@ -158,6 +165,7 @@ endif
 nnoremap F :call ShowRemember()<cr>  
 vnoremap <silent>f :call VimSearch()<cr>  
 nmap <C-@> :call CSCSearch()<CR><CR>	
+nmap <C-f> :call CSCSearchQ()<CR><CR>	
 " Quickly close the current window
 nnoremap Q :call RememberQuit()<cr> 
 nnoremap H :call ShowVITAG()<cr> 

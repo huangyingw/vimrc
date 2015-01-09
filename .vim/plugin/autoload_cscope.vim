@@ -161,7 +161,7 @@ function s:Cycle_csdb()
       if !cscope_connection(3, "out", b:csdbpath)
         let save_csvb = &csverb
         set nocsverb
-        exe "cs add " . b:csdbpath . "/cscope.out " . b:csdbpath
+        exe "cs add " . b:csdbpath . "/cscope.out "
         set csverb
         let &csverb = save_csvb
       endif

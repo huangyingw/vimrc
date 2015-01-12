@@ -41,14 +41,12 @@ function s:Find_in_parent(fln,flsrt,flstp)
   return "Nothing"
 endfunc
 function! CSCSearchQ()
-  normal! gvy<CR>
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
   let b:keyword = expand("<cword>")
   exec '!sh ~/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 1 . ' ' . 'qcsc'
   exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.qcsc.findresult'
 endfunction
 function! CSCSearch()
-  normal! gvy<CR>
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
   let b:keyword = expand("<cword>")
   exec '!sh ~/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 4 . ' ' . 'csc' 

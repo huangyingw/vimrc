@@ -1,6 +1,6 @@
 " set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
 "set statusline=[%n]\%f%m%r%h
-set statusline=[%n]%m%r%h\ %f
+set statusline=[%n]%r%h\ %f
 set statusline +=\ %.65F            "full path
 set statusline+=\ %{WordCount()}\ words,
 set statusline +=%=        " Switch to the right side            

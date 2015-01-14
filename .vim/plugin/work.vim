@@ -6,4 +6,7 @@ if s:hostname == "scl-1yihuang-m.corporate.local"
   exe "cs add /Users/yihuang/myproject/git/work/rovi/template-admin-api/cscope.out"
   exe "cs add /Users/yihuang/myproject/git/work/rovi/template-admin-services/cscope.out"
   exe "cs add /Users/yihuang/myproject/git/work/rovi/template-admin-tool/cscope.out"
+  exe "cs add /Users/yihuang/myproject/git/work/rovi/image-discovery-common/cscope.out"
+  exe "cs add /Users/yihuang/myproject/git/work/rovi/image-discovery-services/cscope.out"
+  exe "cs add /Users/yihuang/myproject/git/work/rovi/asset-publisher/cscope.out"
 endif

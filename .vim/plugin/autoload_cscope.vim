@@ -158,7 +158,7 @@ function s:Cycle_csdb()
 "    echo "Windowdir: " . s:windowdir()
     if newcsdbpath != "Nothing"
       let b:csdbpath = newcsdbpath
-      if !cscope_connection(2, "out", b:csdbpath)
+      if !cscope_connection(2, b:csdbpath)
         let save_csvb = &csverb
         set nocsverb
         exe "cs add " . b:csdbpath . "/cscope.out "

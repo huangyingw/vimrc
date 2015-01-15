@@ -133,7 +133,7 @@ endfunc
 "  drop cscope connections.
 function s:Unload_csdb()
   if exists("b:csdbpath")
-    if cscope_connection(3, "out", b:csdbpath)
+    if cscope_connection(2, "out", b:csdbpath)
       let save_csvb = &csverb
       set nocsverb
       exe "cs kill " . b:csdbpath
@@ -148,7 +148,7 @@ endfunc
 "  cycle the loaded cscope db.
 function s:Cycle_csdb()
     if exists("b:csdbpath")
-      if cscope_connection(3, "out", b:csdbpath)
+      if cscope_connection(2, "out", b:csdbpath)
         return
         "it is already loaded. don't try to reload it.
       endif
@@ -158,7 +158,7 @@ function s:Cycle_csdb()
 "    echo "Windowdir: " . s:windowdir()
     if newcsdbpath != "Nothing"
       let b:csdbpath = newcsdbpath
-      if !cscope_connection(3, "out", b:csdbpath)
+      if !cscope_connection(2, "out", b:csdbpath)
         let save_csvb = &csverb
         set nocsverb
         exe "cs add " . b:csdbpath . "/cscope.out "

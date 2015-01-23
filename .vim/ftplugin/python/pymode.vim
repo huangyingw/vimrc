@@ -51,7 +51,7 @@ endif
 " Custom options
 if g:pymode_options
     setlocal complete+=t
-    setlocal formatoptions-=t
+    setlocal formatoptions+=t
     if v:version > 702 && !&relativenumber
         setlocal number
     endif
@@ -64,6 +64,7 @@ endif
 if g:pymode_lint
 
     command! -buffer -nargs=0 PymodeLintAuto :call pymode#lint#auto()
+    nnoremap tt :call pymode#lint#auto()<CR><CR>
     command! -buffer -nargs=0 PymodeLintToggle :call pymode#lint#toggle()
     command! -buffer -nargs=0 PymodeLint :call pymode#lint#check()
 

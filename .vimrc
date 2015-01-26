@@ -331,4 +331,3 @@ else
   set clipboard=unnamed 
 endif
 au FileType javascript call JavaScriptFold()
-au BufRead,BufNewFile *.py set filetype=python

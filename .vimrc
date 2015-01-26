@@ -257,7 +257,8 @@ function! MyFoldText()
 endfunction
 
 execute pathogen#infect()
-" map <C-t> :tabedit :CommandT<CR>
+" map <C-t> :tabedit 
+:CommandT<CR>
 " powerline{
 "  set guifont=PowerlineSymbols\ for\ Powerline
 "  set nocompatible
@@ -330,3 +331,4 @@ else
   set clipboard=unnamed 
 endif
 au FileType javascript call JavaScriptFold()
+au BufRead,BufNewFile *.py set filetype=python

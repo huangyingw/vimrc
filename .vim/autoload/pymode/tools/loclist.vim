@@ -70,7 +70,8 @@ fun! g:PymodeLocList.show() "{{{
         lclose
     else
         let num = winnr()
-        execute "lopen " . g:pymode_quickfix_maxheight
+        lopen
+        setl nowrap
         execute max([min([line("$"), g:pymode_quickfix_maxheight]), g:pymode_quickfix_minheight]) . "wincmd _"
         if num != winnr()
             call setwinvar(winnr(), 'quickfix_title', self._title . ' <' . self._name . '>')

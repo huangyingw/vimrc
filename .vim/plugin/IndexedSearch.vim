@@ -53,7 +53,7 @@ set cpo&vim
 " Performance tuning limits
 if !exists('g:indexed_search_max_lines')
     " Max filesize (in lines) up to where the plugin works
-    let g:indexed_search_max_lines = 30000
+    let g:indexed_search_max_lines = 70000
 endif
 
 if !exists("g:indexed_search_max_hits")

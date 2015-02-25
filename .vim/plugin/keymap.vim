@@ -1,6 +1,6 @@
 function! RememberQuit()
   let @"=expand("%:p")
-  q!
+  q
 endfunction
 
 "==

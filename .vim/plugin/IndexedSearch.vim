@@ -58,7 +58,7 @@ endif
 
 if !exists("g:indexed_search_max_hits")
     " Max number of matches up to where the plugin stops counting
-    let g:indexed_search_max_hits = 1000
+    let g:indexed_search_max_hits = 10000
 endif
 
 " Appearance settings

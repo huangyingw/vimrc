@@ -116,9 +116,6 @@ set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
 
 set nolist                      " don't show invisible characters by default,
 " but it is enabled for some file types (see later)
-set pastetoggle=<F3>            " when in insert mode, press <F2> to go to
-"    paste mode, where you can paste mass data
-"    that won't be autoindented
 " set mouse=a                     " enable using the mouse if terminal emulator
 "    supports it (xterm does)
 set fileformats="unix,dos,mac"

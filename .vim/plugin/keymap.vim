@@ -61,7 +61,7 @@ function! VimSearch()
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
   let b:keyword = @@
   exec '!sh ~/vishrc/vaa.sh ' . b:csdbpath . ' ' .  b:keyword
-  exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.faa.findresult'
+  exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.vaa.findresult'
 endfunction
 function! ShowProjectRoot()
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
@@ -181,3 +181,6 @@ endfunc
 
 nnoremap <leader>2 :call CompareTwoFiles()<cr>   
 nnoremap <leader>c :call UpdateCscope()<cr>   
+set pastetoggle=<F3>            " when in insert mode, press <F3> to go to
+"    paste mode, where you can paste mass data
+"    that won't be autoindented

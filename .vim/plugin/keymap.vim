@@ -102,7 +102,7 @@ vnoremap <Space> za
 "nnoremap <silent> <leader>f za
 "onoremap <silent> <leader>f <C-C>za
 "vnoremap <silent> <leader>f zf
-nnoremap <silent> <leader>e :vs $HOME/vimrc/.vimrc<CR>
+nnoremap <silent> <leader>e :vs $HOME/.bash_history<CR>
 nnoremap <silent> <leader>f :vs $HOME/loadrc/.loadrc<CR>
 nnoremap <silent> <leader>v :so $MYVIMRC<CR>
 nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>

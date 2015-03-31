@@ -328,4 +328,4 @@ else
   set clipboard=unnamed 
 endif
 au FileType javascript call JavaScriptFold()
-autocmd BufRead,BufNewFile *.txt,*.md setlocal spell
+autocmd BufRead,BufNewFile *.md setlocal spell

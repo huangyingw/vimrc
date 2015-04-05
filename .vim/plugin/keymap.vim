@@ -43,24 +43,24 @@ endfunc
 function! CSCSearchQ()
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
   let b:keyword = expand("<cword>")
-  exec '!sh ~/loadrc/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 1 . ' ' . 'qcsc'
+  exec '!~/loadrc/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 1 . ' ' . 'qcsc'
   exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.qcsc.findresult'
 endfunction
 function! CSCSearch()
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
   let b:keyword = expand("<cword>")
-  exec '!sh ~/loadrc/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 4 . ' ' . 'csc' 
+  exec '!~/loadrc/vishrc/vsearch.sh ' . b:csdbpath . ' ' .  b:keyword . ' ' . 4 . ' ' . 'csc' 
   exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.csc.findresult'
 endfunction
 function! UpdateCscope()
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
-  exec '!sh ~/loadrc/bashrc/cscope.sh ' . b:csdbpath
+  exec '!~/loadrc/bashrc/cscope.sh ' . b:csdbpath
 endfunction
 function! VimSearch()
   normal! gvy<CR>
   let b:csdbpath = <SID>Find_in_parent("cscope.out",<SID>windowdir(),$HOME)
   let b:keyword = @@
-  exec '!sh ~/loadrc/vishrc/vaa.sh ' . b:csdbpath . ' ' .  b:keyword
+  exec '!~/loadrc/vishrc/vaa.sh ' . b:csdbpath . ' ' .  b:keyword
   exec 'vsplit ' . b:csdbpath . '/' . b:keyword . '.vaa.findresult'
 endfunction
 function! ShowProjectRoot()
@@ -169,7 +169,7 @@ nnoremap Q :call RememberQuit()<cr>
 nnoremap H :call ShowVITAG()<cr> 
 nnoremap T :vs /export/home1/username/cscope_db/<CR>
 nnoremap L :vs <C-R>"<CR>
-map <F5> :<C-U>exec '!sh ~/loadrc/vishrc/vrun.sh ' . expand("%:p")<CR> 
+map <F5> :<C-U>exec '!~/loadrc/vishrc/vrun.sh ' . expand("%:p")<CR> 
 nnoremap gf gF
 map oo :vertical wincmd F<CR>
 nnoremap <silent> <leader>g :!gitk %:p<CR>
